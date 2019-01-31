@@ -91,16 +91,19 @@ End;*/
 --ALTER TABLE Client ADD CONSTRAINT FK_Client_DossierID FOREIGN KEY (DossierID) REFERENCES Dossier (DossierID);
 
 ------------------------
---SELECT
+--RENAME
 
-select * from Dossier;
-select * from Voyage;
-select * from Destination;
-select * from Client;
-
-EXEC sp_rename 'Assurance', 'Assurances'
+/*EXEC sp_rename 'Assurance', 'Assurances'
 EXEC sp_rename 'AgenceVoyage', 'AgencesVoyages'
 EXEC sp_rename 'Client', 'Clients'
 EXEC sp_rename 'Destination', 'Destinations'
 EXEC sp_rename 'Dossier', 'Dossiers'
-EXEC sp_rename 'Voyage', 'Voyages'
+EXEC sp_rename 'Voyage', 'Voyages'*/
+
+------------------------
+--SELECT
+
+select * from Dossiers;
+select * from Voyages;
+select * from Destinations;
+select * from Clients;
