@@ -36,7 +36,7 @@ namespace BoVoyages.Model
             }
             catch (Exception)
             {
-                Console.WriteLine("probleme de connexion");
+                Console.WriteLine("probleme de connexion à " + baseDeDonnees);
                 result = false;
             }
             return result ? this.connexion : null;
@@ -51,7 +51,7 @@ namespace BoVoyages.Model
             }
             catch (Exception)
             {
-                Console.WriteLine("probleme de connexion");
+                Console.WriteLine("probleme de déconnexion");
                 result = false;
             }
             return result;
@@ -74,8 +74,8 @@ namespace BoVoyages.Model
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
                 Console.WriteLine("probleme de requete");
+                Console.WriteLine(e.Message);
                 this.dataset = null;
             }
             this.Deconnecter();
@@ -89,15 +89,15 @@ namespace BoVoyages.Model
 
             try
             {
-                this.commande.CommandText = "update "+ table + " set " + nomColonne + " = '" + nouvelleValeur + "' where ID = '" + id + "';";
+                this.commande.CommandText = "update "+ table + " set " + nomColonne + " = '" + nouvelleValeur + "' where ID=" + id + ";"; //Changement en dur en attendant nouvelle BDD
                 this.commande.Connection = this.connexion;
                 this.commande.ExecuteNonQuery();
                 resultat = "Mise à jour de la ligne d'ID " + id + " de la table " + table;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                resultat = "La requête a été refusée par le serveur.";                
+                resultat = "La requête a été refusée par le serveur.";
+                Console.WriteLine(e.Message);            
             }
             this.Deconnecter();
             return resultat;
@@ -109,7 +109,7 @@ namespace BoVoyages.Model
             try
             {
                 this.dataset.Clear();
-                this.commande.CommandText = "Select * from " + table + " where ClientID =" + ID + ";";
+                this.commande.CommandText = "Select * from " + table + " where ID =" + ID + ";";
                 this.commande.Connection = this.connexion;
 
                 SqlDataAdapter adapter = new SqlDataAdapter
@@ -135,7 +135,7 @@ namespace BoVoyages.Model
             bool result = true;
             try
             {
-                this.commande.CommandText = "delete from " + table + " where " + table + "ID=" + id + ";";
+                this.commande.CommandText = "delete from " + table + " where ID=" + id + ";";
                 Console.WriteLine(this.commande.CommandText);
                 this.commande.Connection = this.connexion;
                 this.commande.ExecuteNonQuery();
@@ -149,9 +149,6 @@ namespace BoVoyages.Model
             this.Deconnecter();
             return result;
         }
-
-
-
 
 
         // Ajouter soit un client, soit un voyage à la base de données via GestionClient ou GestionVoyage
@@ -174,8 +171,8 @@ namespace BoVoyages.Model
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
                 Console.WriteLine("probleme de requete");
+                Console.WriteLine(e.Message);
             }
             this.Deconnecter();
         }
@@ -193,8 +190,8 @@ namespace BoVoyages.Model
             }
             catch (Exception e)
             {
-                Console.WriteLine("probleme dans la procédure");
-                //Console.WriteLine(e);
+                Console.WriteLine("La procedure " + procedure + " n'a pas pu être appelée.");
+                Console.WriteLine(e.Message);
             }
             this.Deconnecter();
             return lignes;
@@ -225,7 +222,8 @@ namespace BoVoyages.Model
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("probleme dans la procédure " + e.Message);
+                    Console.WriteLine("La procedure " + procedure + " n'a pas pu être appelée.");
+                    Console.WriteLine(e.Message);
                 }
             }
             this.Deconnecter();

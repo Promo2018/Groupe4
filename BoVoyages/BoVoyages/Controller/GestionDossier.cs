@@ -11,6 +11,8 @@ namespace BoVoyages.Controller
 {
     class GestionDossier
     {
+        /*Classe qui permet de gérer les dossiers en affichant une liste complète ou le résultat d'une recherche.*/
+
         public List<string> dossiers = new List<string>();
         public AccesBDD accesBDD = new AccesBDD();
 
@@ -22,7 +24,7 @@ namespace BoVoyages.Controller
         {
             accesBDD.Connecter(accesBDD.baseDeDonnees);
 
-            DataSet dataset = accesBDD.AfficherTout("Dossier");
+            DataSet dataset = accesBDD.AfficherTout("Dossiers");
 
             if (dataset != null)
             {
@@ -32,12 +34,12 @@ namespace BoVoyages.Controller
 
         public void ChercherDossier(int ID)
         {
-            accesBDD.RechercherID("Dossier", ID);
+            accesBDD.RechercherID("Dossiers", ID);
         }
 
         public void AjouterDossier(params String[] nouveauDossier)
         {
-            accesBDD.Ajouter(nouveauDossier, "Dossier");
+            accesBDD.Ajouter(nouveauDossier, "Dossiers");
         }
 
         public string ModifierEtatDossier(string nouvelleValeur, int id)
@@ -45,10 +47,15 @@ namespace BoVoyages.Controller
             return accesBDD.Modifier("Dossiers", "Etat", nouvelleValeur, id);
         }
 
+        public string ModifierRaisonAnnulation(string nouvelleValeur, int id)
+        {
+            return accesBDD.Modifier("Dossiers", "RaisonAnnulation", nouvelleValeur, id);
+        }
+
 
         public void Supprimer(int id)
         {
-            accesBDD.Supprimer("Dossier", id);
+            accesBDD.Supprimer("Dossiers", id);
         }
 
 

@@ -85,7 +85,7 @@ namespace BoVoyages.View
                 int colonneSaisie = this.ChoixColonne("Client");
 
                 Console.WriteLine("Entrez l'id du client que vous voulez modifier.");
-                int id = this.ConvertirSaisieEnNombre();
+                int id = this.SaisirEtVerifierID();
 
                 Console.WriteLine("Veuillez saisir une nouvelle valeur à insérer dans la colonne : ");
                 string nouvelleValeur = Console.ReadLine();
@@ -101,7 +101,7 @@ namespace BoVoyages.View
 
                 string[] parametres = new string[2];
                 //Vérifier que l'ID saisi peut être converti en int, puis convertir en string
-                parametres[1] = this.ConvertirSaisieEnNombre().ToString();
+                parametres[1] = this.SaisirEtVerifierID().ToString();
 
                 //Passer les paramètres au constructeur
                 gestionClient.ProcedureSupprimer(parametres);

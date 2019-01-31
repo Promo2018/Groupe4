@@ -14,9 +14,9 @@ namespace BoVoyages.View
 
         public MenuCommercial()
         {
+            menuDossier = new MenuDossier(this);
             menuVoyage = new MenuVoyage(this);
             menuClient = new MenuClient(this);
-            menuDossier = new MenuDossier(this);
             nombreOptions = 3;
         }
 
@@ -25,26 +25,26 @@ namespace BoVoyages.View
             System.Console.WriteLine("\n\n*********************************************************************");
             System.Console.WriteLine("******   Menu Commercial   ******************************************");
             System.Console.WriteLine("BoVoyages : Sélectionnez une option dans la liste ci-dessous :");
-            System.Console.WriteLine("BoVoyages :\t 1 - Gérer les voyages");
-            System.Console.WriteLine("BoVoyages :\t 2 - Gérer les clients");
-            System.Console.WriteLine("BoVoyages :\t 3 - Gérer les dossiers");
+            System.Console.WriteLine("BoVoyages :\t 1 - Gérer les dossiers");
+            System.Console.WriteLine("BoVoyages :\t 2 - Gérer les voyages");
+            System.Console.WriteLine("BoVoyages :\t 3 - Gérer les clients");
             System.Console.WriteLine("BoVoyages :\t 0 - Quitter");
         }
 
-        public override Menu Executer(int sel)
+        public override Menu Executer(int selection)
         {
             Menu menu = null;
 
-            if(sel == 1)
+            if(selection == 1)
             {
-                menu = menuVoyage;
-            } else if(sel == 2)
+                menu = menuDossier; 
+            } else if(selection == 2)
+            {
+                menu = menuVoyage; 
+            }
+            else if (selection == 3)
             {
                 menu = menuClient;
-            }
-            else if (sel == 3)
-            {
-                menu = menuDossier;
             }
 
             return menu;

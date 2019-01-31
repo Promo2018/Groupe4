@@ -87,14 +87,24 @@ namespace BoVoyages.View
         }
 
         //Methode qui convertit l'ID en int
-        public int ConvertirSaisieEnNombre()
+        public int SaisirEtVerifierID()
         {
-            bool succes = Int32.TryParse(Console.ReadLine(), out int saisie);
-            if (!succes)
+            bool succes = true;
+            int saisie;
+            do
             {
-                Console.WriteLine("Une erreur est survenue pendant la conversion de la saisie en int.\n Veuillez rentrer un chiffre.");
                 succes = Int32.TryParse(Console.ReadLine(), out saisie);
-            }
+                if (succes == false)
+                {
+                    Console.WriteLine("Une erreur est survenue pendant la conversion de la saisie en int.\nVeuillez rentrer un chiffre.");
+                }
+                if (succes == true && saisie > 200)
+                {
+                    Console.WriteLine("Cet ID n'existe pas dans la table. Merci de rentrer un ID existant");
+                    succes = false;
+                }
+                
+            } while (succes == false); //Recommencer tant qu'un nombre n'est pas saisi
             return saisie;
         }
 
