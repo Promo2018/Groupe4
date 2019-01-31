@@ -97,3 +97,10 @@ select * from Dossier;
 select * from Voyage;
 select * from Destination;
 select * from Client;
+
+EXEC sp_rename 'Assurance', 'Assurances'
+EXEC sp_rename 'AgenceVoyage', 'AgencesVoyages'
+EXEC sp_rename 'Client', 'Clients'
+EXEC sp_rename 'Destination', 'Destinations'
+EXEC sp_rename 'Dossier', 'Dossiers'
+EXEC sp_rename 'Voyage', 'Voyages'

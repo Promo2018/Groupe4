@@ -17,7 +17,7 @@ namespace BoVoyages.Model
         private SqlCommand commande;
         private DataSet dataset;
 
-        public AccesBDD()                       // Access BDD constructor
+        public AccesBDD()
         {
             this.commande = new SqlCommand();
             this.dataset = new DataSet();
@@ -58,7 +58,7 @@ namespace BoVoyages.Model
         }
 
 
-        public DataSet AfficherTout(string table)          // Select all from a table
+        public DataSet AfficherTout(string table)          // Afficher tout le contenu d'une table
         {
             this.Connecter(this.baseDeDonnees);
             try
@@ -70,7 +70,7 @@ namespace BoVoyages.Model
                 {
                     SelectCommand = this.commande
                 };
-                adapter.Fill(this.dataset, "Resultat");     // temporary table with results "Resultat"
+                adapter.Fill(this.dataset, "Resultat");
             }
             catch (Exception e)
             {
@@ -88,7 +88,7 @@ namespace BoVoyages.Model
             bool result = true;
             try
             {
-                this.commande.CommandText = "update "+table + " set " + nomColonne + " = '" + nouvelleValeur + "' where " + table + "ID = '" + id + "';";
+                this.commande.CommandText = "update "+ table + " set " + nomColonne + " = '" + nouvelleValeur + "' where " + table + "ID = '" + id + "';";
                 this.commande.Connection = this.connexion;
                 this.commande.ExecuteNonQuery();
             }

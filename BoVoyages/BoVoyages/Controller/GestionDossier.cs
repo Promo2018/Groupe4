@@ -14,6 +14,9 @@ namespace BoVoyages.Controller
         public List<string> dossiers = new List<string>();
         public AccesBDD accesBDD = new AccesBDD();
 
+        enum EtatDossierReservation : byte {EnAttente, EnCours, Refusee, Acceptee}
+        enum RaisonAnnulationDossier : byte { client, placeInsufffisante }
+
         //Afficher une liste de tous les dossiers
         public void ListerDossiers()
         {
@@ -35,6 +38,11 @@ namespace BoVoyages.Controller
         public void AjouterDossier(params String[] nouveauDossier)
         {
             accesBDD.Ajouter(nouveauDossier, "Dossier");
+        }
+
+        public void ModifierEtatDossier(string nouvelleValeur, int id)
+        {
+            accesBDD.Modifier("Dossiers", "Etat", nouvelleValeur, id);
         }
 
         public void Supprimer(int id)

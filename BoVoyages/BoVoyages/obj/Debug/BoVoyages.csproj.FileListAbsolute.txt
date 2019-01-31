@@ -19,3 +19,10 @@ C:\Users\Adminl\source\repos\BoVoyages\BoVoyages\obj\Debug\BoVoyages.pdb
 \\webnet21\Formation\_Nous_Groupe\MarcDreyfus\BoVoyages\BoVoyages\obj\Debug\BoVoyages.csproj.CoreCompileInputs.cache
 \\webnet21\Formation\_Nous_Groupe\MarcDreyfus\BoVoyages\BoVoyages\obj\Debug\BoVoyages.exe
 \\webnet21\Formation\_Nous_Groupe\MarcDreyfus\BoVoyages\BoVoyages\obj\Debug\BoVoyages.pdb
+\\webnet21\Formation\_Nous_Groupe\Travaux communs\Projet2_Dimitri_Marc\BoVoyages\BoVoyages\bin\Debug\BoVoyages.exe.config
+\\webnet21\Formation\_Nous_Groupe\Travaux communs\Projet2_Dimitri_Marc\BoVoyages\BoVoyages\bin\Debug\BoVoyages.exe
+\\webnet21\Formation\_Nous_Groupe\Travaux communs\Projet2_Dimitri_Marc\BoVoyages\BoVoyages\bin\Debug\BoVoyages.pdb
+\\webnet21\Formation\_Nous_Groupe\Travaux communs\Projet2_Dimitri_Marc\BoVoyages\BoVoyages\obj\Debug\BoVoyages.csprojAssemblyReference.cache
+\\webnet21\Formation\_Nous_Groupe\Travaux communs\Projet2_Dimitri_Marc\BoVoyages\BoVoyages\obj\Debug\BoVoyages.csproj.CoreCompileInputs.cache
+\\webnet21\Formation\_Nous_Groupe\Travaux communs\Projet2_Dimitri_Marc\BoVoyages\BoVoyages\obj\Debug\BoVoyages.exe
+\\webnet21\Formation\_Nous_Groupe\Travaux communs\Projet2_Dimitri_Marc\BoVoyages\BoVoyages\obj\Debug\BoVoyages.pdb
