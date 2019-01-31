@@ -40,10 +40,11 @@ namespace BoVoyages.Controller
             accesBDD.Ajouter(nouveauDossier, "Dossier");
         }
 
-        public void ModifierEtatDossier(string nouvelleValeur, int id)
+        public string ModifierEtatDossier(string nouvelleValeur, int id)
         {
-            accesBDD.Modifier("Dossiers", "Etat", nouvelleValeur, id);
+            return accesBDD.Modifier("Dossiers", "Etat", nouvelleValeur, id);
         }
+
 
         public void Supprimer(int id)
         {

@@ -71,7 +71,7 @@ namespace BoVoyages.View
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Supprimer le voyage");
 
-                int id = this.ConvertirID();
+                int id = this.ConvertirSaisieEnNombre();
 
                 gestionVoyage.Supprimer(id);
             }

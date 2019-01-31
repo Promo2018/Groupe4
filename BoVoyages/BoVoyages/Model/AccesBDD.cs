@@ -82,24 +82,25 @@ namespace BoVoyages.Model
             return this.dataset;
         }
 
-        public bool Modifier(string table, string nomColonne, string nouvelleValeur, int id)
+        public string Modifier(string table, string nomColonne, string nouvelleValeur, int id)
         {
             this.Connecter(this.baseDeDonnees);
-            bool result = true;
+            string resultat = "";
+
             try
             {
-                this.commande.CommandText = "update "+ table + " set " + nomColonne + " = '" + nouvelleValeur + "' where " + table + "ID = '" + id + "';";
+                this.commande.CommandText = "update "+ table + " set " + nomColonne + " = '" + nouvelleValeur + "' where ID = '" + id + "';";
                 this.commande.Connection = this.connexion;
                 this.commande.ExecuteNonQuery();
+                resultat = "Mise à jour de la ligne d'ID " + id + " de la table " + table;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("probleme de requete");
-                result = false;
+                resultat = "La requête a été refusée par le serveur.";                
             }
             this.Deconnecter();
-            return result;
+            return resultat;
         }
 
         public DataSet RechercherID(string table, int ID)          // Select all from a table

@@ -41,6 +41,26 @@ namespace BoVoyages.View
             return selection;
         }
 
+        //Vérifie qu'un nombre est entré, et qu'il est inférieur au nombre d'options saisies
+        public int Lire(int nombreChoix)
+        {
+            try
+            {
+                selection = Int32.Parse(System.Console.ReadLine());
+                if (!ValiderSelection())
+                {
+                    System.Console.WriteLine("BoVoyages: Veuillez entrer un nombre entre 0 et " + nombreChoix);
+                    Lire();
+                }
+            }
+            catch
+            {
+                System.Console.WriteLine("BoVoyages: Veuillez entrer un nombre entre 0 et " + nombreChoix);
+                selection = Lire();
+            }
+            return selection;
+        }
+
         //Méthode qui affiche toute une table de données en fonction du menu qui l'appelle
         public static void ImpressionTable(DataSet dataset)
         {
@@ -67,15 +87,15 @@ namespace BoVoyages.View
         }
 
         //Methode qui convertit l'ID en int
-        public int ConvertirID()
+        public int ConvertirSaisieEnNombre()
         {
-            bool succes = Int32.TryParse(Console.ReadLine(), out int id);
-            while (!succes)
+            bool succes = Int32.TryParse(Console.ReadLine(), out int saisie);
+            if (!succes)
             {
-                Console.WriteLine("Une erreur est survenue pendant la conversion de l'ID en int.\n Veuillez rentrer un chiffre.");
-                succes = Int32.TryParse(Console.ReadLine(), out id);
+                Console.WriteLine("Une erreur est survenue pendant la conversion de la saisie en int.\n Veuillez rentrer un chiffre.");
+                succes = Int32.TryParse(Console.ReadLine(), out saisie);
             }
-            return id;
+            return saisie;
         }
 
         //Méthode qui permet de choisir la colonne que l'on veut selon le menu

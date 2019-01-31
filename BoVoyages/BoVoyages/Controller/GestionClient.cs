@@ -46,7 +46,7 @@ namespace BoVoyages.Controller
 
         }
         
-        public void ModifierClient(int id, int colonne, string nouvelleValeur)
+        public string ModifierClient(int id, int colonne, string nouvelleValeur)
         {
             string nomColonne = "";
 
@@ -63,10 +63,8 @@ namespace BoVoyages.Controller
                 case 8: nomColonne = "Statut"; break;
                 case 9: nomColonne = "DossierID"; break;
             }
-
-            accesBDD.Connecter(accesBDD.baseDeDonnees);
-                        
-            accesBDD.Modifier("Client", nomColonne, nouvelleValeur, id);
+       
+            return accesBDD.Modifier("Client", nomColonne, nouvelleValeur, id);
         }
 
         // Ajout d'une ligne de client

@@ -85,12 +85,13 @@ namespace BoVoyages.View
                 int colonneSaisie = this.ChoixColonne("Client");
 
                 Console.WriteLine("Entrez l'id du client que vous voulez modifier.");
-                int id = this.ConvertirID();
+                int id = this.ConvertirSaisieEnNombre();
 
                 Console.WriteLine("Veuillez saisir une nouvelle valeur à insérer dans la colonne : ");
                 string nouvelleValeur = Console.ReadLine();
 
-                gestionClient.ModifierClient(id, colonneSaisie, nouvelleValeur);
+                //Envoyer les valeurs au constructeur et récupérer la réponse
+                Console.WriteLine(gestionClient.ModifierClient(id, colonneSaisie, nouvelleValeur));
             }
 
             else if (sel == 5)
@@ -100,7 +101,7 @@ namespace BoVoyages.View
 
                 string[] parametres = new string[2];
                 //Vérifier que l'ID saisi peut être converti en int, puis convertir en string
-                parametres[1] = this.ConvertirID().ToString();
+                parametres[1] = this.ConvertirSaisieEnNombre().ToString();
 
                 //Passer les paramètres au constructeur
                 gestionClient.ProcedureSupprimer(parametres);

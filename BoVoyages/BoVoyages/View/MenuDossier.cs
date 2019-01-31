@@ -15,8 +15,9 @@ namespace BoVoyages.View
         private GestionDossier gestionDossier = new GestionDossier();
         public Menu previousMenu;
         private AccesBDD accesBDD = new AccesBDD();
+        bool succes;
 
-        private int dossierID;
+        private int id;
         public string[] titreColonnes = { "Statut", "Civilite", "Prenom", "Nom", "Region", "Prix", "PrixTotal", "Etat"}; // ("Voyage ID", "Etat", "Prix Total")
 
         enum EtatDossierReservation : byte { EnAttente, EnCours, Refusee, Acceptee }
@@ -62,9 +63,9 @@ namespace BoVoyages.View
                 do
                 {
                     Console.WriteLine("Entrez un DossierID de dossier");
-                    dossierID = this.ConvertirID();
+                    id = this.ConvertirSaisieEnNombre();
 
-                    if (dossierID <= 200) // CHANGE !!!! When there will be more dossierIDs... 
+                    if (id <= 200) // CHANGE !!!! When there will be more dossierIDs... 
                     {
                         Console.WriteLine("Access granted. Please proceed");
                         break;
@@ -73,9 +74,9 @@ namespace BoVoyages.View
                     {
                         Console.WriteLine("Access denied - there's no such dossierID yet...");                        
                     }
-                } while (dossierID > 200); // CHANGE !!!! When there will be more dossierIDs... 
+                } while (id > 200); // CHANGE !!!! When there will be more dossierIDs... 
 
-                gestionDossier.ChercherDossier(dossierID);
+                gestionDossier.ChercherDossier(id);
             }
 
             else if (selection == 3)
@@ -89,22 +90,23 @@ namespace BoVoyages.View
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Modifier l'état d'un dossier");
 
-                Console.WriteLine("Entrez un DossierID de dossier");
-                dossierID = this.ConvertirID();
+                Console.WriteLine("Entrez un ID de dossier :");
+                id = ConvertirSaisieEnNombre();
 
-                foreach (string name in Enum.GetNames(typeof(EtatDossierReservation)))
-                {
-                    System.Console.WriteLine(name);
-                }
-                Console.WriteLine("Veuillez saisir l'une des valeurs suivantes : " + EtatDossierReservation.EnAttente);
+                ListerEtatsDossier();
 
-                gestionDossier.ModifierEtatDossier("nouvelleValeur",dossierID);
+                Console.WriteLine("\nVeuillez saisir l'une de ces valeurs.");
+                string etatString = VerifierSaisieEtatDossier(id);
+
+                //Envoyer les données saisies et afficher la réponse renvoyée
+                Console.WriteLine(gestionDossier.ModifierEtatDossier(etatString, id));
             }
 
             else if (selection == 5)
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Supprimer un dossier");
-                int id = this.ConvertirID();
+                Console.WriteLine("Entrez un ID de dossier :");
+                int id = ConvertirSaisieEnNombre();
 
                 gestionDossier.Supprimer(id);
             }
@@ -115,6 +117,48 @@ namespace BoVoyages.View
             }
 
             return menu;
+        }
+
+        //Affiche tous les états possibles de dossier
+        private void ListerEtatsDossier()
+        {
+            Console.WriteLine("\nLes valeurs possibles pour les états sont :");
+            foreach (string colorName in Enum.GetNames(typeof(EtatDossierReservation)))
+            {
+                Console.WriteLine("{0} = {1:D}", colorName,
+                                             Enum.Parse(typeof(EtatDossierReservation), colorName));
+            }
+        }
+
+        //Vérifie si le chiffre saisie fait partie de la liste des états possibles de dossier
+        private string VerifierSaisieEtatDossier(int id)
+        {
+            succes = false;
+            string etatString = "";
+            do
+            {
+                etatString = Console.ReadLine();
+                EtatDossierReservation etatDossierReservation;
+                succes = false;
+
+                if (Enum.TryParse(etatString, out etatDossierReservation))
+                {
+                    if (Enum.IsDefined(typeof(EtatDossierReservation), etatDossierReservation) | etatDossierReservation.ToString().Contains(","))
+                    {
+                        Console.WriteLine("Le statut du dossier " + id + " va être changé en : '{0}'.", etatDossierReservation.ToString());
+                        succes = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("{0} n'est pas une valeur de Réservation. Rentrez une valeur de réservation.", etatString);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("{0} n'est pas une valeur de Réservation. Rentrez une valeur de réservation.", etatString);
+                }
+            } while (succes == false);
+            return etatString;
         }
     }
 }
