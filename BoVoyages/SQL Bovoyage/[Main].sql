@@ -104,6 +104,9 @@ EXEC sp_rename 'Voyage', 'Voyages'*/
 --SELECT
 
 select * from Dossiers;
+--select * from JointAssurDossier;
+select * from Assurances;
 select * from Voyages;
+select * from AgencesVoyages;
 select * from Destinations;
 select * from Clients;
