@@ -1,0 +1,21 @@
+C:\Users\Adminl\source\repos\BoVoyages\BoVoyages\bin\Debug\BoVoyages.exe.config
+C:\Users\Adminl\source\repos\BoVoyages\BoVoyages\bin\Debug\BoVoyages.exe
+C:\Users\Adminl\source\repos\BoVoyages\BoVoyages\bin\Debug\BoVoyages.pdb
+C:\Users\Adminl\source\repos\BoVoyages\BoVoyages\obj\Debug\BoVoyages.csprojAssemblyReference.cache
+C:\Users\Adminl\source\repos\BoVoyages\BoVoyages\obj\Debug\BoVoyages.csproj.CoreCompileInputs.cache
+C:\Users\Adminl\source\repos\BoVoyages\BoVoyages\obj\Debug\BoVoyages.exe
+C:\Users\Adminl\source\repos\BoVoyages\BoVoyages\obj\Debug\BoVoyages.pdb
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\Projet C#\BoVoyages V1\BoVoyages\bin\Debug\BoVoyages.exe.config
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\Projet C#\BoVoyages V1\BoVoyages\bin\Debug\BoVoyages.exe
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\Projet C#\BoVoyages V1\BoVoyages\bin\Debug\BoVoyages.pdb
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\Projet C#\BoVoyages V1\BoVoyages\obj\Debug\BoVoyages.csprojAssemblyReference.cache
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\Projet C#\BoVoyages V1\BoVoyages\obj\Debug\BoVoyages.csproj.CoreCompileInputs.cache
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\Projet C#\BoVoyages V1\BoVoyages\obj\Debug\BoVoyages.exe
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\Projet C#\BoVoyages V1\BoVoyages\obj\Debug\BoVoyages.pdb
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\BoVoyages\BoVoyages\bin\Debug\BoVoyages.exe.config
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\BoVoyages\BoVoyages\bin\Debug\BoVoyages.exe
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\BoVoyages\BoVoyages\bin\Debug\BoVoyages.pdb
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\BoVoyages\BoVoyages\obj\Debug\BoVoyages.csprojAssemblyReference.cache
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\BoVoyages\BoVoyages\obj\Debug\BoVoyages.csproj.CoreCompileInputs.cache
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\BoVoyages\BoVoyages\obj\Debug\BoVoyages.exe
+\\webnet21\Formation\_Nous_Groupe\MarcDreyfus\BoVoyages\BoVoyages\obj\Debug\BoVoyages.pdb

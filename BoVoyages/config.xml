@@ -1,0 +1,5 @@
+<connection>
+	<source>localhost</source>
+	
+	<initialCatalog>BoVoyages</initialCatalog>
+</connection>

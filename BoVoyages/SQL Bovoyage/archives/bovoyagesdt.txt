@@ -1,0 +1,6 @@
+ClientID,Civilite,Nom,Prenom,Adresse,CodePostal,Ville,DateDeNaissance,Telephone,Email
+1,Mme,Kaleva,Meggy,4 rue Sycamore,75005,Paris,1979-04-23,0690080878,meggyisok@something.com
+2,M.,Dupont,Jean,15 rue du lieu commun,75014,Paris,1965-03-01,0607695812,jd@something.com
+3,Mlle,Ricohard,Chazael,25 rue Deercove,69009,Lyon,2000-03-21,0471252110,rico666@gmail.com
+4,M.,Dwyn,Felix,26 rue Devils Hill,75013,Paris,1999-10-21,0345252091,ro677@gmail.com
+5,M.,Ragnvald,Evelin,3 rue Jennifer Lane,75004,Paris,1955-01-16,0789289591,rragna7@gmail.com
