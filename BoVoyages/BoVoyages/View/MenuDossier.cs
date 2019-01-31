@@ -119,17 +119,6 @@ namespace BoVoyages.View
             return menu;
         }
 
-        //Affiche tous les états possibles de dossier
-        private void ListerEtatsDossier()
-        {
-            Console.WriteLine("\nLes valeurs possibles pour les états sont :");
-            foreach (string colorName in Enum.GetNames(typeof(EtatDossierReservation)))
-            {
-                Console.WriteLine("{0} = {1:D}", colorName,
-                                             Enum.Parse(typeof(EtatDossierReservation), colorName));
-            }
-        }
-
         //Vérifie si le chiffre saisie fait partie de la liste des états possibles de dossier
         private string VerifierSaisieEtatDossier(int id)
         {
@@ -145,20 +134,79 @@ namespace BoVoyages.View
                 {
                     if (Enum.IsDefined(typeof(EtatDossierReservation), etatDossierReservation) | etatDossierReservation.ToString().Contains(","))
                     {
-                        Console.WriteLine("Le statut du dossier " + id + " va être changé en : '{0}'.", etatDossierReservation.ToString());
+                        Console.WriteLine("Le statut de réservation du dossier " + id + " va être changé en : '{0}'.", etatDossierReservation.ToString());
+                        if (etatDossierReservation == EtatDossierReservation.Refusee)
+                        {
+                            Console.WriteLine("Vous avez demandé à refuser un dossier.");
+                            ListerRaisonsAnnulation();
+                            Console.WriteLine("\nVeuillez saisir le motif d'annulation.");
+                            VerifierRaisonAnnulation(id);
+                        }
                         succes = true;
                     }
                     else
                     {
-                        Console.WriteLine("{0} n'est pas une valeur de Réservation. Rentrez une valeur de réservation.", etatString);
+                        Console.WriteLine("{0} n'est pas une valeur de réservation. Rentrez une valeur de réservation.", etatString);
                     }
                 }
                 else
                 {
-                    Console.WriteLine("{0} n'est pas une valeur de Réservation. Rentrez une valeur de réservation.", etatString);
+                    Console.WriteLine("{0} n'est pas une valeur de réservation. Rentrez une valeur de réservation.", etatString);
                 }
             } while (succes == false);
             return etatString;
+        }
+
+        private string VerifierRaisonAnnulation(int id)
+        {
+            succes = false;
+            string raisonString = "";
+            do
+            {
+                raisonString = Console.ReadLine();
+                RaisonAnnulationDossier raisonAnnulationDossier;
+                succes = false;
+
+                if (Enum.TryParse(raisonString, out raisonAnnulationDossier))
+                {
+                    if (Enum.IsDefined(typeof(RaisonAnnulationDossier), raisonAnnulationDossier) | raisonAnnulationDossier.ToString().Contains(","))
+                    {
+                        Console.WriteLine("La raison d'annulation du dossier " + id + " va être enregistrée en tant que : '{0}'.", raisonAnnulationDossier.ToString());
+                        succes = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("{0} n'est pas une raison d'annulation. Rentrez une valeur de raison d'annulation.", raisonString);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("{0} n'est pas une raison d'annulation. Rentrez une valeur de raison d'annulation.", raisonString);
+                }
+            } while (succes == false);
+            return raisonString;
+        }
+
+        //Affiche tous les états possibles de dossier
+        private void ListerEtatsDossier()
+        {
+            Console.WriteLine("\nLes valeurs possibles pour les états de dossier sont :");
+            foreach (string colorName in Enum.GetNames(typeof(EtatDossierReservation)))
+            {
+                Console.WriteLine("{0} = {1:D}", colorName,
+                                             Enum.Parse(typeof(EtatDossierReservation), colorName));
+            }
+        }
+
+        //Affiche tous les états possibles de dossier
+        private void ListerRaisonsAnnulation()
+        {
+            Console.WriteLine("\nLes valeurs possibles pour les états de dossier sont :");
+            foreach (string colorName in Enum.GetNames(typeof(RaisonAnnulationDossier)))
+            {
+                Console.WriteLine("{0} = {1:D}", colorName,
+                                             Enum.Parse(typeof(RaisonAnnulationDossier), colorName));
+            }
         }
     }
 }
