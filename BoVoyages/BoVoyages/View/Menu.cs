@@ -110,7 +110,7 @@ namespace BoVoyages.View
             }
         }
 
-        //Methode qui convertit l'ID en int
+        //Convertit l'ID en int
         public int SaisirEtVerifierID()
         {
             bool succes = true;
@@ -132,7 +132,7 @@ namespace BoVoyages.View
             return saisie;
         }
 
-        //Méthode qui permet de choisir la colonne que l'on veut selon le menu
+        //Permet de choisir la colonne que l'on veut selon le menu
         public int ChoixColonne(string table)
         {
             int nombreColonnes = 0;

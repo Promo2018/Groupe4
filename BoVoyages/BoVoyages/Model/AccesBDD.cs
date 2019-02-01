@@ -209,7 +209,7 @@ namespace BoVoyages.Model
             {
                 this.commande.CommandText = procedure;
                 this.commande.Connection = this.connexion;
-                //this.commande.CommandType = CommandType.StoredProcedure;
+                this.commande.CommandType = CommandType.StoredProcedure;
                 lignes = this.commande.ExecuteNonQuery();
             }
             catch (Exception e)

@@ -64,6 +64,11 @@ namespace BoVoyages.Controller
             return accesBDD.Modifier(nomDeTable, "RaisonAnnulation", nouvelleValeur, id);
         }
 
+        public int CalculerPrixTousVoyages ()
+        {
+            return accesBDD.ExecuterProcedure("CalculPrixVoyage");
+                       
+        }
 
         public void Supprimer(int id)
         {

@@ -40,6 +40,7 @@ namespace BoVoyages.View
             System.Console.WriteLine("BoVoyages :\t 3 - Ajouter un dossier");
             System.Console.WriteLine("BoVoyages :\t 4 - Changer l'état d'un dossier");
             System.Console.WriteLine("BoVoyages :\t 5 - Supprimer un dossier");
+            System.Console.WriteLine("BoVoyages :\t 6 - Recalculer le prix de tous les voyages");
             System.Console.WriteLine("BoVoyages :\t 0 - Quitter");
         }
 
@@ -95,7 +96,14 @@ namespace BoVoyages.View
                 int id = SaisirEtVerifierID();
                 gestionDossier.Supprimer(id);
             }
-                                   
+
+            else if (selection == 6)
+            {
+                System.Console.WriteLine("BoVoyages >>>>>>>>> - Recalculer le prix de tous les voyages");
+                int nombreLignes = gestionDossier.CalculerPrixTousVoyages();
+                Console.WriteLine("Vous avez modifiée " + nombreLignes + " lignes");
+            }
+
             else if (selection == 0)
             {
                 menu = previousMenu;
