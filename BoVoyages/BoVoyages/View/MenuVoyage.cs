@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BoVoyages.Controller;
+using BoVoyages.Model;
 
 namespace BoVoyages.View
 {
@@ -11,7 +12,7 @@ namespace BoVoyages.View
     {
         private GestionVoyage gestionVoyage = new GestionVoyage();
         private readonly Menu previousMenu;
-        public string[] titreColonnes = { "DestinationID", "DateAller", "DateRetour", "Nombre de Places", "Prix" };
+        private AccesBDD accesBDD = new AccesBDD();
 
         public MenuVoyage(Menu previousMenu)
         {
@@ -39,32 +40,34 @@ namespace BoVoyages.View
             if (sel == 1)
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Liste de tous les voyages\n");
-                gestionVoyage.ListVoyages();
+                gestionVoyage.ListerVoyages();
             }
 
             else if (sel == 2)
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Ajouter les voyages");
 
-                //0 = DestinationID(int); 1 = DateAller; 2 = DateRetour; 3 = NombreDePlaces(int); 4 = Prix(float);
+                string[] nouveauClient = SaisirNouvelleLigne(accesBDD.RecupererNomsColonnes("Voyages"));
 
-                string[] nouveauVoyage = new string[5];
-                int n = 0;
-
-                foreach (string column in nouveauVoyage)
-                {
-                    Console.WriteLine(titreColonnes[n] + " :");
-                    nouveauVoyage[n] = Console.ReadLine();
-                    n++;
-                }
-                Console.WriteLine("Le voyage du " + nouveauVoyage[1] + " a été ajouté");
-
-                gestionVoyage.AjouterVoyages(nouveauVoyage);
+                Console.WriteLine(gestionVoyage.AjouterVoyage(nouveauClient));
             }
 
             else if (sel == 3)
             {
-                //Modifier un voyage
+                System.Console.WriteLine("BoVoyages >>>>>>>>> - Modifier un voyage");
+
+                Console.WriteLine("\nVoici la liste des colonnes : \n0=Destination ID \n1=Date Aller \n2=Date Retour \n3=Nombre de Places \n4=Prix \n5=Agence ID");
+                int colonneSaisie = this.ChoixColonne(6);
+
+                Console.WriteLine("Entrez l'id du voyage que vous voulez modifier.");
+                int id = this.SaisirEtVerifierID();
+
+                Console.WriteLine("Veuillez saisir une nouvelle valeur à insérer dans la colonne : ");
+                string nouvelleValeur = Console.ReadLine();
+
+                //Envoyer les valeurs au constructeur et récupérer la réponse
+                Console.WriteLine(gestionVoyage.ModifierVoyage(id, colonneSaisie, nouvelleValeur));
+
             }
 
             else if (sel == 4)

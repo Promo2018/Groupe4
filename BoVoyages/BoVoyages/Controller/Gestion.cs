@@ -14,7 +14,7 @@ namespace BoVoyages.Controller
         //Permet de lister les colonnes avant de lister une table
         protected static void ListerColonnes(AccesBDD accesBDD, string nomDeTable)
         {
-            DataSet dataset = accesBDD.AfficherColonnes(nomDeTable);
+            DataSet dataset = accesBDD.RecupererNomsColonnes(nomDeTable);
 
             if (dataset != null)
             {

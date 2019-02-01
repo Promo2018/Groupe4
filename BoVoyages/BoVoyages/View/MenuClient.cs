@@ -61,27 +61,18 @@ namespace BoVoyages.View
 
                 //0 = Civilité, 1 = Nom, 2 = Prénom, 3 = Adresse, 4 = Ville, 5 = Date de naissance, 6 = Telephone, 7 = Email, 8 = Statut, 9 = DossierID
 
-                string[] nouveauClient = new string[10];
+                string[] nouveauClient = SaisirNouvelleLigne(accesBDD.RecupererNomsColonnes("Clients"));
 
-                int n = 0;
-
-                foreach (string column in nouveauClient)
-                {
-                    Console.WriteLine(titreColonnes[n] + " :");
-                    nouveauClient[n] = Console.ReadLine();
-                    n++;
-                }
-                Console.WriteLine("Le ou la cliente " + nouveauClient[2] + " " + nouveauClient[1] + " a été ajouté(e)");
-
-                gestionClient.AjouterClient(nouveauClient);
+                Console.WriteLine(gestionClient.AjouterClient(nouveauClient));
             }
 
 
             else if (sel == 4)
             {
-                System.Console.WriteLine("BoVoyages >>>>>>>>> - Modifier le client");
+                System.Console.WriteLine("BoVoyages >>>>>>>>> - Modifier un client");
 
-                int colonneSaisie = this.ChoixColonne("Client");
+                Console.WriteLine("\nVoici la liste des colonnes : \n0=Civilite \n1=Nom \n2=Prenom \n3=Adresse \n4=Ville \n5=Date De Naissance \n6=Telephone \n7=Email \n8=Statut \n9=DossierID");
+                int colonneSaisie = this.ChoixColonne(10);
 
                 Console.WriteLine("Entrez l'id du client que vous voulez modifier.");
                 int id = this.SaisirEtVerifierID();

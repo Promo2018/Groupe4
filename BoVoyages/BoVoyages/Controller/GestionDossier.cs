@@ -49,9 +49,9 @@ namespace BoVoyages.Controller
             }
         }
 
-        public void AjouterDossier(params String[] nouveauDossier)
+        public string AjouterDossier(params String[] nouveauDossier)
         {
-            accesBDD.Ajouter(nouveauDossier, nomDeTable);
+            return accesBDD.Ajouter(nouveauDossier, nomDeTable);
         }
 
         public string ModifierEtatDossier(string nouvelleValeur, int id)

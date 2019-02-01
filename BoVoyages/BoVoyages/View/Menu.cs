@@ -110,6 +110,37 @@ namespace BoVoyages.View
             }
         }
 
+        //Affiche toutes les colonnes une à une et demande une saisie (pas de contrôle spécifique, surcharger pour ajouter contrôles)
+        public static string[] SaisirNouvelleLigne(DataSet dataColumn)
+        {
+            List<string> listeSaisies = new List<string>();
+
+            if (dataColumn.Tables["Colonnes"].Rows.Count > 0)
+            {
+                foreach (DataRow ligne in dataColumn.Tables["Colonnes"].Rows)
+                {
+                    for (int i = 0; i < ligne.ItemArray.Length; i++)
+                    {
+                        if(ligne[i].ToString() == "ID")
+                        {
+
+                        }
+                        else
+                        {
+                            Console.Write(ligne[i] + " : ");
+                            listeSaisies.Add(Console.ReadLine());
+                        }
+                        
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Erreur, pas de colonne trouvée dans la table.");
+            }
+            return listeSaisies.ToArray();
+        }
+
         //Convertit l'ID en int
         public int SaisirEtVerifierID()
         {
@@ -133,26 +164,9 @@ namespace BoVoyages.View
         }
 
         //Permet de choisir la colonne que l'on veut selon le menu
-        public int ChoixColonne(string table)
+        public int ChoixColonne(int nombreColonnes)
         {
-            int nombreColonnes = 0;
-            if (table == "Client")
-            {
-                Console.WriteLine("\nVoici la liste des colonnes : \n0=Civilite \n1=Nom \n2=Prenom \n3=Adresse \n4=Ville \n5=Date De Naissance \n6=Telephone \n7=Email \n8=Statut \n9=DossierID");
-                nombreColonnes = 9;
-            }
-            else if (table == "Voyage")
-            {
-                Console.WriteLine("\nVoici la liste des colonnes : XXX");
-                nombreColonnes = 9;
-            }
-            else if (table == "Dossier")
-            {
-                Console.WriteLine("\nVoici la liste des colonnes : XXX");
-                nombreColonnes = 9;
-            }
-
-            Console.WriteLine("\nEntrez un numéro de colonne que vous souhaitez modifier.");
+            Console.WriteLine("\nVeuillez entrer un numéro de colonne que vous souhaitez modifier.");
 
             bool success = Int32.TryParse(Console.ReadLine(), out int colonneSaisie);
             while (success == false)
@@ -161,9 +175,9 @@ namespace BoVoyages.View
                 success = Int32.TryParse(Console.ReadLine(), out colonneSaisie);
             }
 
-            while (colonneSaisie > nombreColonnes)
+            while (colonneSaisie >= nombreColonnes)
             {
-                Console.WriteLine("Veuillez entrer un numéro de colonne entre 0 et " + nombreColonnes);
+                Console.WriteLine("Veuillez entrer un numéro de colonne entre 0 et " + (nombreColonnes - 1));
                 colonneSaisie = Convert.ToInt32(Console.ReadLine());
             }
             return colonneSaisie;

@@ -82,7 +82,7 @@ namespace BoVoyages.Model
             return this.dataset;
         }
 
-        public DataSet AfficherColonnes(string table)          // Afficher les noms des colonnes
+        public DataSet RecupererNomsColonnes(string table)          // Afficher les noms des colonnes
         {
             this.Connecter(this.baseDeDonnees);
             try
@@ -176,29 +176,37 @@ namespace BoVoyages.Model
 
 
         // Ajouter soit un client, soit un voyage à la base de données via GestionClient ou GestionVoyage
-        public void Ajouter(string[] nouvelleLigne, string table)
+        public string Ajouter(string[] nouvelleLigne, string table)
         {
+            string retour = "";
             this.Connecter(this.baseDeDonnees);
             try
             {
-                if (table == "Client")
+                if (table == "Clients")
                 {
                     commande.CommandText = "insert into " + table + " (Civilite, Nom, Prenom, Adresse, Ville, DateDeNaissance, Telephone, Email, Statut, DossierID) values ('" + nouvelleLigne[0] + "', '" + nouvelleLigne[1] + "', '" + nouvelleLigne[2] + "', '" + nouvelleLigne[3] + "', '" + nouvelleLigne[4] + "', '" + nouvelleLigne[5] + "', '" + nouvelleLigne[6] + "', '" + nouvelleLigne[7] + "', '" + nouvelleLigne[8] + "', '" + nouvelleLigne[9] + "');";
+                    retour = "Le client " + nouvelleLigne[1] + "a été ajouté.";
                 }
-                else if (table == "Voyage")
+                else if (table == "Voyages")
                 {
-                    //cmd.CommandText = "INSERT [dbo].[Voyage] ([DestinationID], [DateAller], [DateRetour], [NombreDePlaces], [Prix]) VALUES (4, N'2019-02-08', N'2019-02-23', 5, 1638)";
                     commande.CommandText = "insert into " + table + " (DestinationID, DateAller, DateRetour, NombreDePlaces, Prix) values ('" + nouvelleLigne[0] + "', '" + nouvelleLigne[1] + "', '" + nouvelleLigne[2] + "', '" + nouvelleLigne[3] + "', '" + nouvelleLigne[4] + "');";
+                    retour = "Le voyage du " + nouvelleLigne[1] + "a été ajouté.";
+                }
+                else if (table == "Dossiers")
+                {
+                    commande.CommandText = "insert into " + table + " (VoyageID, ClientID, Etat, PrixTotal, CarteBancaire) values ('" + nouvelleLigne[0] + "', '" + nouvelleLigne[1] + "', 0, '" + nouvelleLigne[4] + "', '" + nouvelleLigne[4] + "');";
+                    retour = "Le dossier correspond au client numéro " + nouvelleLigne[1] + "a été ajouté.";
                 }
                 this.commande.Connection = this.connexion;
                 commande.ExecuteNonQuery();
             }
             catch (Exception e)
             {
-                Console.WriteLine("probleme de requete");
-                Console.WriteLine(e.Message);
+
+                retour = "probleme de requête lors de la tentative d'ajout d'une nouvelle ligne à la table" + table + "\n" + e.Message;
             }
             this.Deconnecter();
+            return retour;
         }
 
         public int ExecuterProcedure(String procedure)

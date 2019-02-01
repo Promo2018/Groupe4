@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Gestion.cs" />
+    <Compile Include="Controller\GestionAssurance.cs" />
     <Compile Include="Controller\GestionClient.cs" />
     <Compile Include="Controller\GestionDossier.cs" />
     <Compile Include="Controller\GestionLogin.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Archives\Participant.cs" />
     <Compile Include="Archives\Personne.cs" />
     <Compile Include="Archives\Voyage.cs" />
+    <Compile Include="View\MenuAssurance.cs" />
     <Compile Include="View\MenuCommercial.cs" />
     <Compile Include="View\Menu.cs" />
     <Compile Include="Program.cs" />

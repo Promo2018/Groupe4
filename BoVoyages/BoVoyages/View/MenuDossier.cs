@@ -70,7 +70,9 @@ namespace BoVoyages.View
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Ajouter un dossier");
 
-                gestionDossier.AjouterDossier();
+                string[] nouveauDossier = SaisirNouvelleLigne(accesBDD.RecupererNomsColonnes("Dossiers"));
+
+                Console.WriteLine(gestionDossier.AjouterDossier(nouveauDossier));
             }
 
             else if (selection == 4)
@@ -170,7 +172,7 @@ namespace BoVoyages.View
             return etatString;
         }
 
-        //Vérifie si le chiffre saisie fait partie de la liste des raisons d'annulation
+        //Vérifie si le chiffre saisi fait partie de la liste des raisons d'annulation
         private string SaisirRaisonAnnulation(int id)
         {
             succes = false;

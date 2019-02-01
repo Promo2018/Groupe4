@@ -27,7 +27,7 @@ namespace BoVoyages.Controller
         {
             ListerColonnes(accesBDD, nomDeTable);
 
-            DataSet dataset = accesBDD.AfficherTout("Clients");
+            DataSet dataset = accesBDD.AfficherTout(nomDeTable);
 
             if(dataset != null)
             {
@@ -40,7 +40,7 @@ namespace BoVoyages.Controller
         {
             ListerColonnes(accesBDD, nomDeTable);
 
-            DataSet dataset = accesBDD.RechercherID("Clients", ID);
+            DataSet dataset = accesBDD.RechercherID(nomDeTable, ID);
 
             if (dataset != null)
             {
@@ -71,9 +71,9 @@ namespace BoVoyages.Controller
         }
 
         // Ajout d'une ligne de client
-        public void AjouterClient(params String[] nouveauClient)
+        public string AjouterClient(params String[] nouveauClient)
         {
-            accesBDD.Ajouter(nouveauClient, "Clients");
+            return accesBDD.Ajouter(nouveauClient, nomDeTable);
         }
 
         public void ProcedureSupprimer(string[] parametres)

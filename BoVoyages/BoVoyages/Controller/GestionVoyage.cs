@@ -14,6 +14,7 @@ namespace BoVoyages.Controller
     {
         private List<string> voyages = new List<string>();
         AccesBDD accesBDD = new AccesBDD();
+        string nomDeTable = "Voyages";
 
         public GestionVoyage()
         {
@@ -21,11 +22,11 @@ namespace BoVoyages.Controller
         }
 
         //Lister tous les voyages
-        public void ListVoyages()
+        public void ListerVoyages()
         {
-            ListerColonnes(accesBDD, "Voyages");
+            ListerColonnes(accesBDD, nomDeTable);
 
-            DataSet dataset = accesBDD.AfficherTout("Voyages");
+            DataSet dataset = accesBDD.AfficherTout(nomDeTable);
 
             if (dataset != null)
             {
@@ -33,9 +34,26 @@ namespace BoVoyages.Controller
             }
         }
 
-        public void AjouterVoyages(params String[] nouveauVoyage)
+        public string AjouterVoyage(params String[] nouveauVoyage)
         {
-            accesBDD.Ajouter(nouveauVoyage, "Voyages");
+            return accesBDD.Ajouter(nouveauVoyage, nomDeTable);
+        }
+
+        public string ModifierVoyage(int id, int colonne, string nouvelleValeur)
+        {
+            string nomColonne = "";
+
+            switch (colonne)
+            {
+                case 0: nomColonne = "DestinationID"; break;
+                case 1: nomColonne = "DateAller"; break;
+                case 2: nomColonne = "DateRetour"; break;
+                case 3: nomColonne = "NombreDePlaces"; break;
+                case 4: nomColonne = "Prix"; break;
+                case 5: nomColonne = "AgenceID"; break;
+            }
+
+            return accesBDD.Modifier(nomDeTable, nomColonne, nouvelleValeur, id);
         }
 
         //Supprimer les voyages dont la date de départ est passée
@@ -61,13 +79,13 @@ namespace BoVoyages.Controller
         // Supprimer une ligne de voyage
         public void Supprimer(int id)
         {
-            accesBDD.Supprimer("Voyages", id);
+            accesBDD.Supprimer(nomDeTable, id);
 
         }
 
         public void ListerColonnes()
         {
-            DataSet dataset = accesBDD.AfficherColonnes("Voyages");
+            DataSet dataset = accesBDD.RecupererNomsColonnes(nomDeTable);
 
             if (dataset != null)
             {
