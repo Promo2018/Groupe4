@@ -13,6 +13,8 @@ namespace BoVoyages.View
         private MenuDossier menuDossier = null;
         private MenuAssurance menuAssurance = null;
         private MenuAgence menuAgence = null;
+        private MenuDestination menuDestination = null;
+
 
         public MenuCommercial()
         {
@@ -21,8 +23,10 @@ namespace BoVoyages.View
             menuClient = new MenuClient(this);
             menuAssurance = new MenuAssurance(this);
             menuAgence = new MenuAgence(this);
+            menuDestination = new MenuDestination(this);
 
-            nombreOptions = 5;
+
+            nombreOptions = 6;
         }
 
         public override void Afficher()
@@ -35,6 +39,7 @@ namespace BoVoyages.View
             System.Console.WriteLine("BoVoyages :\t 3 - Gérer les clients");
             System.Console.WriteLine("BoVoyages :\t 4 - Gérer les assurances");
             System.Console.WriteLine("BoVoyages :\t 5 - Gérer les agences");
+            System.Console.WriteLine("BoVoyages :\t 6 - Gérer les destinations");
             System.Console.WriteLine("BoVoyages :\t 0 - Quitter");
         }
 
@@ -65,6 +70,11 @@ namespace BoVoyages.View
             else if (selection == 5)
             {
                 menu = menuAgence;
+            }
+
+            else if (selection == 6)
+            {
+                menu = menuDestination;
             }
             return menu;
         }
