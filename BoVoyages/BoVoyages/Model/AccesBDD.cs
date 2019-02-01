@@ -57,8 +57,7 @@ namespace BoVoyages.Model
             return result;
         }
 
-
-        public DataSet AfficherTout(string table)          // Afficher tout le contenu d'une table
+        public DataSet AfficherTout(string table)          // Récupérer toute une table, la renvoyer pour affichage
         {
             this.Connecter(this.baseDeDonnees);
             try
@@ -82,7 +81,7 @@ namespace BoVoyages.Model
             return this.dataset;
         }
 
-        public DataSet RecupererNomsColonnes(string table)          // Afficher les noms des colonnes
+        public DataSet RecupererNomsColonnes(string table)          // Récupérer les noms des colonnes, les renvoyer pour affichage
         {
             this.Connecter(this.baseDeDonnees);
             try
@@ -124,9 +123,9 @@ namespace BoVoyages.Model
             }
             this.Deconnecter();
             return resultat;
-        }
+        } //Modifier une ligne
 
-        public DataSet RechercherID(string table, int ID)          // Select all from a table
+        public DataSet RechercherID(string table, int ID)          // Chercher un élément précis par son ID, le renvoyer pour affichage
         {
             this.Connecter(this.baseDeDonnees);
             try
@@ -151,8 +150,7 @@ namespace BoVoyages.Model
             return this.dataset;
         }
 
-
-        public bool Supprimer(string table, int id)
+        public bool Supprimer(string table, int id) // Supprimer une ligne 
         {
             this.Connecter(this.baseDeDonnees);
             bool result = true;
@@ -171,11 +169,9 @@ namespace BoVoyages.Model
             }
             this.Deconnecter();
             return result;
-        }
+        } 
 
-
-        // Ajouter soit un client, soit un voyage à la base de données via GestionClient ou GestionVoyage
-        public string Ajouter(string[] nouvelleLigne, string table)
+        public string Ajouter(string[] nouvelleLigne, string table)  // Ajouter une ligne
         {
             string retour = "";
             this.Connecter(this.baseDeDonnees);
@@ -193,8 +189,14 @@ namespace BoVoyages.Model
                 }
                 else if (table == "Dossiers")
                 {
+                    //La colonne état est toujours fixée à 0 (enAttente) au départ
                     commande.CommandText = "insert into " + table + " (VoyageID, ClientID, Etat, PrixTotal, CarteBancaire) values ('" + nouvelleLigne[0] + "', '" + nouvelleLigne[1] + "', 0, '" + nouvelleLigne[4] + "', '" + nouvelleLigne[4] + "');";
-                    retour = "Le dossier correspond au client numéro " + nouvelleLigne[1] + "a été ajouté.";
+                    retour = "Le dossier correspond au client numéro " + nouvelleLigne[1] + " a été ajouté.";
+                }
+                else if (table == "Assurances")
+                {
+                    commande.CommandText = "insert into " + table + " (Nom, Cout, Type) values ('" + nouvelleLigne[0] + "', '" + nouvelleLigne[1] + "', '" + nouvelleLigne[2] + "');";
+                    retour = "L'agence " + nouvelleLigne[0] + " a été ajoutée.";
                 }
                 this.commande.Connection = this.connexion;
                 commande.ExecuteNonQuery();
@@ -202,7 +204,7 @@ namespace BoVoyages.Model
             catch (Exception e)
             {
 
-                retour = "probleme de requête lors de la tentative d'ajout d'une nouvelle ligne à la table" + table + "\n" + e.Message;
+                retour = "probleme de requête lors de la tentative d'ajout d'une nouvelle ligne à la table " + table + "\n" + e.Message;
             }
             this.Deconnecter();
             return retour;
@@ -228,7 +230,7 @@ namespace BoVoyages.Model
             return lignes;
         }
 
-        public int ExecuteStoredProcedureParameters(String procedure, String[] parms)
+        public int ExecuterProcedureAvecParametres(String procedure, String[] parms)
         {
             this.Connecter(this.baseDeDonnees);
             int lignes = -1;

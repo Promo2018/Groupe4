@@ -57,6 +57,8 @@
     <Compile Include="Archives\Participant.cs" />
     <Compile Include="Archives\Personne.cs" />
     <Compile Include="Archives\Voyage.cs" />
+    <Compile Include="View\GestionAgence.cs" />
+    <Compile Include="View\MenuAgence.cs" />
     <Compile Include="View\MenuAssurance.cs" />
     <Compile Include="View\MenuCommercial.cs" />
     <Compile Include="View\Menu.cs" />

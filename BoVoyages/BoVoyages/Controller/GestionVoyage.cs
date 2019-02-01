@@ -17,7 +17,7 @@ namespace BoVoyages.Controller
 
         public GestionVoyage()
         {
-            voyages = Voyage.getVoyages().ToList();
+            
         }
 
         //Lister tous les voyages

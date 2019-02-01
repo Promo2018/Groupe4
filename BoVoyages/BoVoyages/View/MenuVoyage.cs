@@ -16,7 +16,7 @@ namespace BoVoyages.View
 
         public MenuVoyage(Menu previousMenu)
         {
-            nombreOptions = 5;
+            nombreOptions = 4;
             this.previousMenu = previousMenu;
         }
 
@@ -28,8 +28,7 @@ namespace BoVoyages.View
             System.Console.WriteLine("BoVoyages :\t 1 - Liste de voyages disponibles");
             System.Console.WriteLine("BoVoyages :\t 2 - Ajouter les voyages");
             System.Console.WriteLine("BoVoyages :\t 3 - Modifier un voyage");
-            System.Console.WriteLine("BoVoyages :\t 4 - Supprimer le voyage");
-            System.Console.WriteLine("BoVoyages :\t 5 - Supprimer les voyages expirés");
+            System.Console.WriteLine("BoVoyages :\t 4 - Supprimer un voyage");
             System.Console.WriteLine("BoVoyages :\t 0 - Quitter");
         }
 
@@ -77,13 +76,6 @@ namespace BoVoyages.View
                 int id = this.SaisirEtVerifierID();
 
                 gestionVoyage.Supprimer(id);
-            }
-
-
-            else if (sel == 5)
-            {
-                System.Console.WriteLine("BoVoyages >>>>>>>>> - Supprimer les voyages expirés");
-                gestionVoyage.SupprimerVoyagesExpires();
             }
 
             else if (sel == 0)

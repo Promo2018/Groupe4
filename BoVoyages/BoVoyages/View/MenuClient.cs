@@ -59,8 +59,7 @@ namespace BoVoyages.View
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Ajouter un client");
 
-                //0 = Civilité, 1 = Nom, 2 = Prénom, 3 = Adresse, 4 = Ville, 5 = Date de naissance, 6 = Telephone, 7 = Email, 8 = Statut, 9 = DossierID
-
+                //Affiche les colonnes. Stocke les valeurs saisies. String[] intermédiaire pour la clarté du code 
                 string[] nouveauClient = SaisirNouvelleLigne(accesBDD.RecupererNomsColonnes("Clients"));
 
                 Console.WriteLine(gestionClient.AjouterClient(nouveauClient));

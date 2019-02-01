@@ -14,7 +14,7 @@ namespace BoVoyages.Controller
         /*Classe qui permet de gérer les assurances en affichant une liste complète ou le résultat d'une recherche.*/
 
         public AccesBDD accesBDD = new AccesBDD();
-        private string nomDeTable = "Assurances";
+        private string table = "Assurances";
 
         public GestionAssurance()
         {
@@ -24,9 +24,9 @@ namespace BoVoyages.Controller
         //Afficher une liste de tous les dossiers
         public void ListerAssurance()
         {
-            ListerColonnes(accesBDD, nomDeTable);
+            ListerColonnes(accesBDD, table);
 
-            DataSet dataset = accesBDD.AfficherTout(nomDeTable);
+            DataSet dataset = accesBDD.AfficherTout(table);
 
             if (dataset != null)
             {
@@ -36,9 +36,9 @@ namespace BoVoyages.Controller
 
         public void ChercherAssurance(int ID)
         {
-            ListerColonnes(accesBDD, nomDeTable);
+            ListerColonnes(accesBDD, table);
 
-            DataSet dataset = accesBDD.RechercherID(nomDeTable, ID);
+            DataSet dataset = accesBDD.RechercherID(table, ID);
 
             if (dataset != null)
             {
@@ -58,36 +58,13 @@ namespace BoVoyages.Controller
                 
             }
 
-            return accesBDD.Modifier("Assurances", nomColonne, nouvelleValeur, id);
+            return accesBDD.Modifier(table, nomColonne, nouvelleValeur, id);
         }
 
-        /*
-        public void AjouterDossier(params String[] nouveauDossier)
+        public string AjouterAssurance(params String[] nouvelleAssurance)
         {
-            accesBDD.Ajouter(nouveauDossier, nomDeTable);
+            return accesBDD.Ajouter(nouvelleAssurance, table);
         }
-
-        public string ModifierEtatDossier(string nouvelleValeur, int id)
-        {
-            return accesBDD.Modifier(nomDeTable, "Etat", nouvelleValeur, id);
-        }
-
-        public string ModifierRaisonAnnulation(string nouvelleValeur, int id)
-        {
-            return accesBDD.Modifier(nomDeTable, "RaisonAnnulation", nouvelleValeur, id);
-        }
-
-        public int CalculerPrixTousVoyages()
-        {
-            return accesBDD.ExecuterProcedure("CalculPrixVoyage");
-
-        }
-
-        public void Supprimer(int id)
-        {
-            accesBDD.Supprimer("Dossiers", id);
-        }
-        */
 
     }
 }

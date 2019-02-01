@@ -18,7 +18,7 @@ namespace BoVoyages.Controller
 
         public GestionClient()
         {
-            clients = Client.GetClients().ToList();
+            
         }
 
         //Afficher une liste de tous les clients
@@ -79,7 +79,7 @@ namespace BoVoyages.Controller
         {
             string procedure = "DeleteClient";
             parametres[0] = "ID";
-            accesBDD.ExecuteStoredProcedureParameters(procedure, parametres);
+            accesBDD.ExecuterProcedureAvecParametres(procedure, parametres);
         }
     }
 }
