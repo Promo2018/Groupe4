@@ -38,7 +38,7 @@ namespace BoVoyages.View
 
             if (sel == 1)
             {
-                System.Console.WriteLine("BoVoyages >>>>>>>>> - Liste de tous les voyages");
+                System.Console.WriteLine("BoVoyages >>>>>>>>> - Liste de tous les voyages\n");
                 gestionVoyage.ListVoyages();
             }
 

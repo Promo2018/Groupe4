@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace BoVoyages.Model
 {
-    class AccesBDD
+    public class AccesBDD
     {
         public string baseDeDonnees = "Bovoyages";
 
@@ -94,7 +94,7 @@ namespace BoVoyages.Model
                 {
                     SelectCommand = this.commande
                 };
-                adapter.Fill(this.dataset, "Resultat");
+                adapter.Fill(this.dataset, "Colonnes");
             }
             catch (Exception e)
             {

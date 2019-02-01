@@ -87,25 +87,26 @@ namespace BoVoyages.View
         }
 
         //Affiche toutes les colonnes, à faire avant une ImpressionTable
-        public static void ImpressionColonnes(DataSet dataset)
+        public static void ImpressionColonnes(DataSet dataColumn)
         {
-            if (dataset.Tables["Resultat"].Rows.Count > 0)
+            if (dataColumn.Tables["Colonnes"].Rows.Count > 0)
             {
                 string impression = "";
-                foreach (DataRow ligne in dataset.Tables["Resultat"].Rows)
+                foreach (DataRow ligne in dataColumn.Tables["Colonnes"].Rows)
                 {
 
                     for (int i = 0; i < ligne.ItemArray.Length; i++)
                     {
-                        impression = String.Concat(impression, ligne[i].ToString(), ", ");
-
+                        impression = String.Concat(impression, ligne[i].ToString(), " ");
                     }
                 }
+                Console.WriteLine("----------------------------------------------------------");
                 Console.WriteLine(impression);
+                Console.WriteLine("----------------------------------------------------------");
             }
             else
             {
-                Console.WriteLine("Aucune ligne à afficher.");
+                Console.WriteLine("Aucun nom de colonne à afficher.");
             }
         }
 

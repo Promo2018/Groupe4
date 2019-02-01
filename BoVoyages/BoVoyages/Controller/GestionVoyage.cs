@@ -10,7 +10,7 @@ using BoVoyages.View;
 
 namespace BoVoyages.Controller
 {
-    public class GestionVoyage
+    public class GestionVoyage : Gestion
     {
         private List<string> voyages = new List<string>();
         AccesBDD accesBDD = new AccesBDD();
@@ -23,14 +23,9 @@ namespace BoVoyages.Controller
         //Lister tous les voyages
         public void ListVoyages()
         {
-            DataSet dataset = accesBDD.AfficherColonnes("Voyages");
+            ListerColonnes(accesBDD, "Voyages");
 
-            if (dataset != null)
-            {
-                Menu.ImpressionColonnes(dataset);
-            }
-
-            dataset = accesBDD.AfficherTout("Voyages");
+            DataSet dataset = accesBDD.AfficherTout("Voyages");
 
             if (dataset != null)
             {
@@ -41,11 +36,6 @@ namespace BoVoyages.Controller
         public void AjouterVoyages(params String[] nouveauVoyage)
         {
             accesBDD.Ajouter(nouveauVoyage, "Voyages");
-        }
-
-        public void Enregistrer()
-        {
-            Voyage.setVoyages(voyages.ToArray());
         }
 
         //Supprimer les voyages dont la date de départ est passée
@@ -75,6 +65,15 @@ namespace BoVoyages.Controller
 
         }
 
+        public void ListerColonnes()
+        {
+            DataSet dataset = accesBDD.AfficherColonnes("Voyages");
+
+            if (dataset != null)
+            {
+                Menu.ImpressionColonnes(dataset);
+            }
+        }
     }
 }
 

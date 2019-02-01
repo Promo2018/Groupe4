@@ -50,7 +50,7 @@ namespace BoVoyages.View
 
             if (selection == 1)
             {
-                System.Console.WriteLine("BoVoyages >>>>>>>>> - Lister tous les dossiers");
+                System.Console.WriteLine("BoVoyages >>>>>>>>> - Lister tous les dossiers \n");
                 
                 gestionDossier.ListerDossiers();
             }
@@ -58,7 +58,7 @@ namespace BoVoyages.View
             
             if (selection == 2)
             {
-                System.Console.WriteLine("BoVoyages >>>>>>>>> - Rechercher un dossier");
+                System.Console.WriteLine("BoVoyages >>>>>>>>> - Rechercher un dossier \n");
                 Console.WriteLine("Entrez un ID de dossier");
                 id = SaisirEtVerifierID();
 

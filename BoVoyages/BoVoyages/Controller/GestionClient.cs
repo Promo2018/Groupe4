@@ -11,10 +11,11 @@ namespace BoVoyages.Controller
 {
     /*Classe qui permet de gérer les clients en affichant une liste complète ou le résultat d'une recherche.*/
 
-    class GestionClient
+    class GestionClient : Gestion
     {
         public List<string> clients = new List<string>();
         public AccesBDD accesBDD = new AccesBDD();
+        private string nomDeTable = "Clients";
 
         public GestionClient()
         {
@@ -24,6 +25,8 @@ namespace BoVoyages.Controller
         //Afficher une liste de tous les clients
         public void ListerClients()
         {
+            ListerColonnes(accesBDD, nomDeTable);
+
             DataSet dataset = accesBDD.AfficherTout("Clients");
 
             if(dataset != null)
@@ -35,6 +38,8 @@ namespace BoVoyages.Controller
         //Chercher un client précis
         public void ChercherClient(int ID)
         {
+            ListerColonnes(accesBDD, nomDeTable);
+
             DataSet dataset = accesBDD.RechercherID("Clients", ID);
 
             if (dataset != null)

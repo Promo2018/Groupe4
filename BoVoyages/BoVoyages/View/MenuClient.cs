@@ -43,14 +43,14 @@ namespace BoVoyages.View
 
             if (sel == 1)
             {
-                System.Console.WriteLine("BoVoyages >>>>>>>>> - Lister les clients");
+                System.Console.WriteLine("BoVoyages >>>>>>>>> - Lister tous les clients\n");
                 gestionClient.ListerClients();
             }
 
             if (sel == 2)
             {
-                System.Console.WriteLine("BoVoyages >>>>>>>>> - Rechercher un client");
-                Console.WriteLine("Entrez un ClientID de client");
+                System.Console.WriteLine("BoVoyages >>>>>>>>> - Rechercher un client\n");
+                Console.WriteLine("Entrez un ID de client");
                 clientID = Convert.ToInt32(Console.ReadLine());
                 gestionClient.ChercherClient(clientID);
             }
@@ -61,7 +61,7 @@ namespace BoVoyages.View
 
                 //0 = Civilité, 1 = Nom, 2 = Prénom, 3 = Adresse, 4 = Ville, 5 = Date de naissance, 6 = Telephone, 7 = Email, 8 = Statut, 9 = DossierID
 
-                string[] nouveauClient = new string[10]; //deleted option
+                string[] nouveauClient = new string[10];
 
                 int n = 0;
 
@@ -72,7 +72,6 @@ namespace BoVoyages.View
                     n++;
                 }
                 Console.WriteLine("Le ou la cliente " + nouveauClient[2] + " " + nouveauClient[1] + " a été ajouté(e)");
-
 
                 gestionClient.AjouterClient(nouveauClient);
             }

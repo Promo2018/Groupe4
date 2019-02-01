@@ -9,12 +9,17 @@ using System.Data;
 
 namespace BoVoyages.Controller
 {
-    class GestionDossier
+    class GestionDossier : Gestion
     {
         /*Classe qui permet de gérer les dossiers en affichant une liste complète ou le résultat d'une recherche.*/
 
         public List<string> dossiers = new List<string>();
         public AccesBDD accesBDD = new AccesBDD();
+        private string nomDeTable = "Dossiers";
+
+        public GestionDossier()
+        {
+        }
 
         enum EtatDossierReservation : byte {EnAttente, EnCours, Refusee, Acceptee}
         enum RaisonAnnulationDossier : byte { client, placeInsufffisante }
@@ -22,9 +27,9 @@ namespace BoVoyages.Controller
         //Afficher une liste de tous les dossiers
         public void ListerDossiers()
         {
-            accesBDD.Connecter(accesBDD.baseDeDonnees);
+            ListerColonnes(accesBDD, nomDeTable);
 
-            DataSet dataset = accesBDD.AfficherTout("Dossiers");
+            DataSet dataset = accesBDD.AfficherTout(nomDeTable);
 
             if (dataset != null)
             {
@@ -34,22 +39,29 @@ namespace BoVoyages.Controller
 
         public void ChercherDossier(int ID)
         {
-            accesBDD.RechercherID("Dossiers", ID);
+            ListerColonnes(accesBDD, nomDeTable);
+
+            DataSet dataset = accesBDD.RechercherID(nomDeTable, ID);
+
+            if (dataset != null)
+            {
+                Menu.ImpressionTable(dataset);
+            }
         }
 
         public void AjouterDossier(params String[] nouveauDossier)
         {
-            accesBDD.Ajouter(nouveauDossier, "Dossiers");
+            accesBDD.Ajouter(nouveauDossier, nomDeTable);
         }
 
         public string ModifierEtatDossier(string nouvelleValeur, int id)
         {
-            return accesBDD.Modifier("Dossiers", "Etat", nouvelleValeur, id);
+            return accesBDD.Modifier(nomDeTable, "Etat", nouvelleValeur, id);
         }
 
         public string ModifierRaisonAnnulation(string nouvelleValeur, int id)
         {
-            return accesBDD.Modifier("Dossiers", "RaisonAnnulation", nouvelleValeur, id);
+            return accesBDD.Modifier(nomDeTable, "RaisonAnnulation", nouvelleValeur, id);
         }
 
 
