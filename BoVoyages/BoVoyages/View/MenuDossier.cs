@@ -18,7 +18,6 @@ namespace BoVoyages.View
         bool succes;
 
         private int id;
-        public string[] titreColonnes = { "Statut", "Civilite", "Prenom", "Nom", "Region", "Prix", "PrixTotal", "Etat"}; // ("Voyage ID", "Etat", "Prix Total")
 
         //Il est possible d'ajouter, de supprimer ou de modifier les éléments des énumérations sans risque
         enum EtatDossierReservation : byte { EnAttente, EnCours, Refusee, Acceptee }
@@ -125,7 +124,7 @@ namespace BoVoyages.View
         }
 
         //Affiche tous les états possibles d'annulation
-        private void ListerRaisonsAnnulation()
+        public void ListerRaisonsAnnulation()
         {
             Console.WriteLine("\nLes valeurs possibles pour les états de dossier sont :");
             foreach (string colorName in Enum.GetNames(typeof(RaisonAnnulationDossier)))
@@ -135,7 +134,7 @@ namespace BoVoyages.View
             }
         }
 
-        //Vérifie si le chiffre saisie fait partie de la liste des états possibles de dossier
+        //Vérifie si le chiffre saisie fait partie de la liste des états possibles de dossier et s'il suit le chemin logique des états de dossiers
         private string SaisirEtatDossier(int id)
         {
             succes = false;

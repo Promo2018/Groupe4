@@ -12,7 +12,6 @@ namespace BoVoyages.Controller
 {
     public class GestionVoyage : Gestion
     {
-        private List<string> voyages = new List<string>();
         AccesBDD accesBDD = new AccesBDD();
         string nomDeTable = "Voyages";
 
@@ -56,31 +55,10 @@ namespace BoVoyages.Controller
             return accesBDD.Modifier(nomDeTable, nomColonne, nouvelleValeur, id);
         }
 
-        //Supprimer les voyages dont la date de départ est passée
-        public void SupprimerVoyagesExpires()
-        {
-            for(int i = 0; i < voyages.Count; i++ )
-            {
-                if(GetDateDebut(voyages[i]) < DateTime.Today)
-                {
-                    voyages.Remove(voyages[i]);
-                }
-            }
-        }
-
-        private DateTime GetDateDebut(string line)
-        {
-            DateTime dateDebut;
-            string[] values = line.Split(',');
-            dateDebut = DateTime.Parse(values[2]);
-            return dateDebut;
-        }
-
         // Supprimer une ligne de voyage
         public void Supprimer(int id)
         {
             accesBDD.Supprimer(nomDeTable, id);
-
         }
 
         public void ListerColonnes()

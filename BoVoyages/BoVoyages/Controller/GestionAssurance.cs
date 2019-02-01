@@ -13,7 +13,6 @@ namespace BoVoyages.Controller
     {
         /*Classe qui permet de gérer les assurances en affichant une liste complète ou le résultat d'une recherche.*/
 
-        public List<string> dossiers = new List<string>();
         public AccesBDD accesBDD = new AccesBDD();
         private string nomDeTable = "Assurances";
 
@@ -45,6 +44,21 @@ namespace BoVoyages.Controller
             {
                 Menu.ImpressionTable(dataset);
             }
+        }
+
+        public string ModifierAssurance(int id, int colonne, string nouvelleValeur)
+        {
+            string nomColonne = "";
+
+            switch (colonne)
+            {        
+                case 0: nomColonne = "Nom"; break;
+                case 1: nomColonne = "Cout"; break;
+                case 2: nomColonne = "Type"; break;
+                
+            }
+
+            return accesBDD.Modifier("Assurances", nomColonne, nouvelleValeur, id);
         }
 
         /*

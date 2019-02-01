@@ -13,9 +13,8 @@ namespace BoVoyages.Controller
     {
         /*Classe qui permet de gérer les dossiers en affichant une liste complète ou le résultat d'une recherche.*/
 
-        public List<string> dossiers = new List<string>();
         public AccesBDD accesBDD = new AccesBDD();
-        private string nomDeTable = "Dossiers";
+        private string table = "Dossiers";
 
         public GestionDossier()
         {
@@ -27,9 +26,9 @@ namespace BoVoyages.Controller
         //Afficher une liste de tous les dossiers
         public void ListerDossiers()
         {
-            ListerColonnes(accesBDD, nomDeTable);
+            ListerColonnes(accesBDD, table);
 
-            DataSet dataset = accesBDD.AfficherTout(nomDeTable);
+            DataSet dataset = accesBDD.AfficherTout(table);
 
             if (dataset != null)
             {
@@ -39,9 +38,9 @@ namespace BoVoyages.Controller
 
         public void ChercherDossier(int ID)
         {
-            ListerColonnes(accesBDD, nomDeTable);
+            ListerColonnes(accesBDD, table);
 
-            DataSet dataset = accesBDD.RechercherID(nomDeTable, ID);
+            DataSet dataset = accesBDD.RechercherID(table, ID);
 
             if (dataset != null)
             {
@@ -51,17 +50,24 @@ namespace BoVoyages.Controller
 
         public string AjouterDossier(params String[] nouveauDossier)
         {
-            return accesBDD.Ajouter(nouveauDossier, nomDeTable);
+            return accesBDD.Ajouter(nouveauDossier, table);
         }
 
+        //Modifier l'état d'une réservation et, si c'est une annulation, signaler qu'un mail sera envoyé.
         public string ModifierEtatDossier(string nouvelleValeur, int id)
         {
-            return accesBDD.Modifier(nomDeTable, "Etat", nouvelleValeur, id);
+            string messageRetour = accesBDD.Modifier(table, "Etat", nouvelleValeur, id);
+            if (messageRetour == "Mise à jour de la ligne d'ID " + id + " de la table " + table && Int32.Parse(nouvelleValeur) == 2)
+            {
+                messageRetour = messageRetour + "\nVous avez modifié la réservation en 'annulée'. Un mail sera envoyé au client pour le prévenir.";
+            }
+
+            return messageRetour;
         }
 
         public string ModifierRaisonAnnulation(string nouvelleValeur, int id)
         {
-            return accesBDD.Modifier(nomDeTable, "RaisonAnnulation", nouvelleValeur, id);
+            return accesBDD.Modifier(table, "RaisonAnnulation", nouvelleValeur, id);
         }
 
         public int CalculerPrixTousVoyages ()

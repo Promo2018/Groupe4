@@ -13,7 +13,6 @@ namespace BoVoyages.Controller
 
     class GestionClient : Gestion
     {
-        public List<string> clients = new List<string>();
         public AccesBDD accesBDD = new AccesBDD();
         private string nomDeTable = "Clients";
 
@@ -82,30 +81,5 @@ namespace BoVoyages.Controller
             parametres[0] = "ID";
             accesBDD.ExecuteStoredProcedureParameters(procedure, parametres);
         }
-
-
-
-
-
-        /*
-        //Afficher seulement les clients demandés, en fonction d'une entrée et dans une colonne au choix
-        public void ChercherClient(int ID)
-        {
-            accesBDD.SelectID("Client", ID);
-        }
-
-        // Ajout d'une ligne de client
-        public void AjouterClient(params String[] nouveauClient)
-        {
-            accesBDD.AddLine(nouveauClient, "Client");
-        }
-
-        // Supprimer d'une ligne de client
-        public void Supprimer(int clientSupprimer)
-        {
-            accesBDD.SupprimerLine(clientSupprimer, "Client");
-
-        }
-        */
     }
 }

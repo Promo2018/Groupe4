@@ -10,7 +10,7 @@ namespace BoVoyages.View
 {   
     public class MenuAssurance : Menu
     {
-        private GestionAssurance gestionDossier = new GestionAssurance();
+        private GestionAssurance gestionAssurance = new GestionAssurance();
         public Menu previousMenu;
         private AccesBDD accesBDD = new AccesBDD();
         bool succes;
@@ -21,7 +21,7 @@ namespace BoVoyages.View
         public MenuAssurance(Menu previousMenu)
         {
             this.previousMenu = previousMenu;
-            nombreOptions = 4;
+            nombreOptions = 5;
         }
 
         public override void Afficher()
@@ -32,6 +32,7 @@ namespace BoVoyages.View
             System.Console.WriteLine("BoVoyages :\t 1 - Lister toutes les assurances");
             System.Console.WriteLine("BoVoyages :\t 2 - Rechercher une assurance");
             System.Console.WriteLine("BoVoyages :\t 3 - Ajouter une assurance");
+            System.Console.WriteLine("BoVoyages :\t 4 - Modifier une assurance");
             System.Console.WriteLine("BoVoyages :\t 0 - Quitter");
         }
 
@@ -44,7 +45,7 @@ namespace BoVoyages.View
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Lister toutes les assurances \n");
 
-                gestionDossier.ListerAssurance();
+                gestionAssurance.ListerAssurance();
             }
 
             
@@ -54,7 +55,7 @@ namespace BoVoyages.View
                 Console.WriteLine("Entrez un ID d'une assurance");
                 id = SaisirEtVerifierID();
 
-                gestionDossier.ChercherAssurance(id);
+                gestionAssurance.ChercherAssurance(id);
             }
             /*
             else if (selection == 3)
@@ -63,7 +64,25 @@ namespace BoVoyages.View
 
                 gestionDossier.AjouterAssurance();
             }
-            */            
+            */
+
+            else if (selection == 4)
+            {
+                System.Console.WriteLine("BoVoyages >>>>>>>>> - Modifier une assurance");
+
+                Console.WriteLine("\nVoici la liste des colonnes : \n0=Nom d'assurance \n1=Cout d'assurance \n2=Type d'assurance");
+                int colonneSaisie = this.ChoixColonne(3);
+
+                Console.WriteLine("Entrez l'id d'assurance que vous voulez modifier.");
+                int id = this.SaisirEtVerifierID();
+
+                Console.WriteLine("Veuillez saisir une nouvelle valeur à insérer dans la colonne : ");
+                string nouvelleValeur = Console.ReadLine();
+
+                //Envoyer les valeurs au constructeur et récupérer la réponse
+                Console.WriteLine(gestionAssurance.ModifierAssurance(id, colonneSaisie, nouvelleValeur));
+            }
+
             else if (selection == 0)
             {
                 menu = previousMenu;
