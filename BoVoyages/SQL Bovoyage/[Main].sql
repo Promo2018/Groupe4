@@ -39,16 +39,6 @@ End;*/
 ------------------------
 --DOSSIER
 
---Mettre à jour aléatoirement les FK par rapport à une PK
-/*Begin
-DECLARE @FK int = 1;
-WHILE @FK <= (SELECT MAX(DossierID) FROM Dossier)
-	Begin
-	update Dossier set VoyageID=(SELECT TOP 1 VoyageID FROM Voyage ORDER BY NEWID()) where DossierID=@FK;
-	SET @FK = @FK + 1;
-	End;
-End;*/
-
 --Remplir aléatoirement le champ carte bancaire
 /*Begin
 DECLARE @FK int = 1;
@@ -70,6 +60,19 @@ End;*/
 
 --Afficher les ID qui n'ont pas de correspondance
 --select VoyageID, DestinationID from Voyage where DestinationID NOT IN (SELECT DestinationID FROM Destination);
+
+------------------------
+--REMPLISSAGE AUTO
+
+--Mettre à jour aléatoirement les FK par rapport à une PK, changer noms de colonne
+/*Begin
+DECLARE @FK int = 1;
+WHILE @FK <= (SELECT MAX(ID) FROM Voyages)
+	Begin
+	update Voyages set AgenceID=(SELECT TOP 1 ID FROM AgencesVoyages ORDER BY NEWID()) where ID=@FK;
+	SET @FK = @FK + 1;
+	End;
+End;*/
 
 ------------------------
 --ALTER
@@ -104,7 +107,7 @@ EXEC sp_rename 'Voyage', 'Voyages'*/
 --SELECT
 
 select * from Dossiers;
---select * from JointAssurDossier;
+select * from JointAssurDossier;
 select * from Assurances;
 select * from Voyages;
 select * from AgencesVoyages;
