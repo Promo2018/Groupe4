@@ -82,6 +82,30 @@ namespace BoVoyages.Model
             return this.dataset;
         }
 
+        public DataSet AfficherColonnes(string table)          // Afficher les noms des colonnes
+        {
+            this.Connecter(this.baseDeDonnees);
+            try
+            {
+                this.dataset.Clear();
+                this.commande.CommandText = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = '" + table + "'";
+                this.commande.Connection = this.connexion;
+                SqlDataAdapter adapter = new SqlDataAdapter
+                {
+                    SelectCommand = this.commande
+                };
+                adapter.Fill(this.dataset, "Resultat");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Problème dans la tentative d'afficher les noms des colonnes");
+                Console.WriteLine(e.Message);
+                this.dataset = null;
+            }
+            this.Deconnecter();
+            return this.dataset;
+        }
+
         public string Modifier(string table, string nomColonne, string nouvelleValeur, int id)
         {
             this.Connecter(this.baseDeDonnees);

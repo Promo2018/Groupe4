@@ -23,9 +23,14 @@ namespace BoVoyages.Controller
         //Lister tous les voyages
         public void ListVoyages()
         {
-            accesBDD.Connecter(accesBDD.baseDeDonnees);
+            DataSet dataset = accesBDD.AfficherColonnes("Voyages");
 
-            DataSet dataset = accesBDD.AfficherTout("Voyages");
+            if (dataset != null)
+            {
+                Menu.ImpressionColonnes(dataset);
+            }
+
+            dataset = accesBDD.AfficherTout("Voyages");
 
             if (dataset != null)
             {

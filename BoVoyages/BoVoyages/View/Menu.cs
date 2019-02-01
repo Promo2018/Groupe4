@@ -86,6 +86,29 @@ namespace BoVoyages.View
             }
         }
 
+        //Affiche toutes les colonnes, à faire avant une ImpressionTable
+        public static void ImpressionColonnes(DataSet dataset)
+        {
+            if (dataset.Tables["Resultat"].Rows.Count > 0)
+            {
+                string impression = "";
+                foreach (DataRow ligne in dataset.Tables["Resultat"].Rows)
+                {
+
+                    for (int i = 0; i < ligne.ItemArray.Length; i++)
+                    {
+                        impression = String.Concat(impression, ligne[i].ToString(), ", ");
+
+                    }
+                }
+                Console.WriteLine(impression);
+            }
+            else
+            {
+                Console.WriteLine("Aucune ligne à afficher.");
+            }
+        }
+
         //Methode qui convertit l'ID en int
         public int SaisirEtVerifierID()
         {

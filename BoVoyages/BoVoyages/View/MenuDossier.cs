@@ -59,9 +59,8 @@ namespace BoVoyages.View
             if (selection == 2)
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Rechercher un dossier");
-                //gestionDossier.ListerDossiers();
-                Console.WriteLine("Entrez un DossierID de dossier");
-                id = this.SaisirEtVerifierID();
+                Console.WriteLine("Entrez un ID de dossier");
+                id = SaisirEtVerifierID();
 
                 gestionDossier.ChercherDossier(id);
             }
@@ -94,7 +93,6 @@ namespace BoVoyages.View
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Supprimer un dossier");
                 Console.WriteLine("Entrez un ID de dossier :");
                 int id = SaisirEtVerifierID();
-
                 gestionDossier.Supprimer(id);
             }
                                    
@@ -110,14 +108,13 @@ namespace BoVoyages.View
         private void ListerEtatsDossier()
         {
             Console.WriteLine("\nLes valeurs possibles pour les états de réservation sont :");
-            foreach (string colorName in Enum.GetNames(typeof(EtatDossierReservation)))
+            foreach (string EtatNom in Enum.GetNames(typeof(EtatDossierReservation)))
             {
-                Console.WriteLine("{0} = {1:D}", colorName,
-                                             Enum.Parse(typeof(EtatDossierReservation), colorName));
+                Console.WriteLine("{0} = {1:D}", EtatNom, Enum.Parse(typeof(EtatDossierReservation), EtatNom));
             }
         }
 
-        //Affiche tous les états possibles de dossier
+        //Affiche tous les états possibles d'annulation
         private void ListerRaisonsAnnulation()
         {
             Console.WriteLine("\nLes valeurs possibles pour les états de dossier sont :");
