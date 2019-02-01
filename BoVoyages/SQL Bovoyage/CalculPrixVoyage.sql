@@ -15,12 +15,18 @@ CREATE PROCEDURE CalculPrixVoyage as
 	DECLARE @NombreVoyageurs int =0;
 	DECLARE @VoyageursRemise int = 0;
 	DECLARE @PrixAvecRemise int = 0;
+	DECLARE @VoyageursSansRemise int = 0;
 
-	WHILE @ID <= 300
+	DECLARE @PrixTOTAL int = 0;
+	DECLARE @PrixTotalAvecRemise int = 0;
+	DECLARE @PrixTotalSansRemise int = 0;
+
+	WHILE @ID <= (select max(ID) from Dossiers)
 		
 		BEGIN
 
-		SET @NombreVoyageurs = (select distinct count(*) from Clients C, Dossiers D where D.ID = 82 AND C.DossierID = D.ID);
+
+		SET @NombreVoyageurs = (select distinct count(*) from Clients C, Dossiers D where D.ID = @ID AND C.DossierID = D.ID);
 
 		SET @Prix = (select Prix from Voyages V, Dossiers D where D.VoyageID=V.ID and D.ID=@ID);
 		
@@ -30,10 +36,17 @@ CREATE PROCEDURE CalculPrixVoyage as
 
 		ELSE SET @Assurance = 0;
 
-		SET @VoyageursRemise = (select distinct count(*) from Clients C, Dossiers D where D.ID = 82 AND C.DossierID = D.ID and (select datediff(year, DateDeNaissance, '01/02/2019')) < 12) 
+		SET @VoyageursRemise = (select distinct count(*) from Clients C, Dossiers D where D.ID = @ID AND C.DossierID = D.ID and (select datediff(year, DateDeNaissance, '01/02/2019')) < 12) 
+		SET @VoyageursSansRemise = (select distinct count(*) from Clients C, Dossiers D where D.ID = @ID AND C.DossierID = D.ID and (select datediff(year, DateDeNaissance, '01/02/2019')) > 12) 
+
 		SET @PrixAvecRemise = @Prix*0.6;
 		
-		update Dossiers SET PrixTotal = (@Prix + @Assurance)*@NombreVoyageurs + @PrixAvecRemise*@VoyageursRemise WHERE Dossiers.ID=@ID 
+		SET @PrixTotalAvecRemise = @VoyageursRemise*(@PrixAvecRemise+@Assurance);
+		SET @PrixTotalSansRemise = @VoyageursSansRemise*(@Prix+@Assurance);
+
+		update Dossiers SET PrixTOTAL = @PrixTotalAvecRemise+@PrixTotalSansRemise WHERE Dossiers.ID=@ID
+
+		--update Dossiers SET PrixTotal = (@Prix + @Assurance)*@NombreVoyageurs WHERE Dossiers.ID=@ID 
 			
 
 		SET @ID = @ID + 1;
@@ -44,6 +57,7 @@ Go
 execute CalculPrixVoyage
 
 select * from Dossiers
+
 
 
 
