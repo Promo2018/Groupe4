@@ -75,7 +75,7 @@ namespace BoVoyages.View
 
                 int id = this.SaisirEtVerifierID();
 
-                gestionVoyage.Supprimer(id);
+                gestionVoyage.SupprimerVoyage(id);
             }
 
             else if (sel == 0)

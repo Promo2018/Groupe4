@@ -15,7 +15,7 @@ namespace BoVoyages.View
         private string login;
         private string mdp;
 
-        public bool IsLoginOK()
+        public bool VerifierLogin()
         {
             
 
@@ -36,7 +36,7 @@ namespace BoVoyages.View
                 if ((tries++) < 3)
                 {
                     System.Console.WriteLine("BoVoyages : Login et mot de passe invalide, merci de réessayer");
-                    loginOK = IsLoginOK();
+                    loginOK = VerifierLogin();
                 }
                 //Si au moins 3 erreurs, fermer l'application
                 else

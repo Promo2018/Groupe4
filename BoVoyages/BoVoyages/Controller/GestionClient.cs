@@ -14,7 +14,7 @@ namespace BoVoyages.Controller
     class GestionClient : Gestion
     {
         public AccesBDD accesBDD = new AccesBDD();
-        private string nomDeTable = "Clients";
+        private string table = "Clients";
 
         public GestionClient()
         {
@@ -24,9 +24,9 @@ namespace BoVoyages.Controller
         //Afficher une liste de tous les clients
         public void ListerClients()
         {
-            ListerColonnes(accesBDD, nomDeTable);
+            ListerColonnes(accesBDD, table);
 
-            DataSet dataset = accesBDD.AfficherTout(nomDeTable);
+            DataSet dataset = accesBDD.AfficherTout(table);
 
             if(dataset != null)
             {
@@ -37,9 +37,9 @@ namespace BoVoyages.Controller
         //Chercher un client précis
         public void ChercherClient(int ID)
         {
-            ListerColonnes(accesBDD, nomDeTable);
+            ListerColonnes(accesBDD, table);
 
-            DataSet dataset = accesBDD.RechercherID(nomDeTable, ID);
+            DataSet dataset = accesBDD.RechercherID(table, ID);
 
             if (dataset != null)
             {
@@ -72,14 +72,12 @@ namespace BoVoyages.Controller
         // Ajout d'une ligne de client
         public string AjouterClient(params String[] nouveauClient)
         {
-            return accesBDD.Ajouter(nouveauClient, nomDeTable);
+            return accesBDD.Ajouter(nouveauClient, table);
         }
 
-        public void ProcedureSupprimer(string[] parametres)
+        public void SupprimerClient(int id)
         {
-            string procedure = "DeleteClient";
-            parametres[0] = "ID";
-            accesBDD.ExecuterProcedureAvecParametres(procedure, parametres);
+            accesBDD.Supprimer(table, id);
         }
     }
 }

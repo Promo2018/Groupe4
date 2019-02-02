@@ -37,17 +37,17 @@ namespace BoVoyages.View
             System.Console.WriteLine("BoVoyages :\t 0 - Quitter");
         }
 
-        public override Menu Executer(int sel)
+        public override Menu Executer(int selection)
         {
             Menu menu = this;
 
-            if (sel == 1)
+            if (selection == 1)
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Lister tous les clients\n");
                 gestionClient.ListerClients();
             }
 
-            if (sel == 2)
+            if (selection == 2)
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Rechercher un client\n");
                 Console.WriteLine("Entrez un ID de client");
@@ -55,7 +55,7 @@ namespace BoVoyages.View
                 gestionClient.ChercherClient(clientID);
             }
 
-            else if (sel == 3)
+            else if (selection == 3)
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Ajouter un client");
 
@@ -66,7 +66,7 @@ namespace BoVoyages.View
             }
 
 
-            else if (sel == 4)
+            else if (selection == 4)
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Modifier un client");
 
@@ -83,20 +83,18 @@ namespace BoVoyages.View
                 Console.WriteLine(gestionClient.ModifierClient(id, colonneSaisie, nouvelleValeur));
             }
 
-            else if (sel == 5)
+            else if (selection == 5)
             {
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Supprimer le client");
                 System.Console.WriteLine("Veuillez saisir l'ID de la ligne à supprimer.");
 
-                string[] parametres = new string[2];
                 //Vérifier que l'ID saisi peut être converti en int, puis convertir en string
-                parametres[1] = this.SaisirEtVerifierID().ToString();
+                int id = this.SaisirEtVerifierID();
 
-                //Passer les paramètres au constructeur
-                gestionClient.ProcedureSupprimer(parametres);
+                gestionClient.SupprimerClient(id);
             }
 
-            else if (sel == 0)
+            else if (selection == 0)
             {
                 menu = new MenuCommercial();
             }

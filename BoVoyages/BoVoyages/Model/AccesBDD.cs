@@ -184,13 +184,13 @@ namespace BoVoyages.Model
                 }
                 else if (table == "Voyages")
                 {
-                    commande.CommandText = "insert into " + table + " (DestinationID, DateAller, DateRetour, NombreDePlaces, Prix) values ('" + nouvelleLigne[0] + "', '" + nouvelleLigne[1] + "', '" + nouvelleLigne[2] + "', '" + nouvelleLigne[3] + "', '" + nouvelleLigne[4] + "');";
+                    commande.CommandText = "insert into " + table + " (DestinationID, DateAller, DateRetour, NombreDePlaces, Prix, AgenceID) values ('" + nouvelleLigne[0] + "', '" + nouvelleLigne[1] + "', '" + nouvelleLigne[2] + "', '" + nouvelleLigne[3] + "', '" + nouvelleLigne[4] + "', '" + nouvelleLigne[5] + "');";
                     retour = "Le voyage du " + nouvelleLigne[1] + "a été ajouté.";
                 }
                 else if (table == "Dossiers")
                 {
                     //La colonne état est toujours fixée à 0 (enAttente) au départ
-                    commande.CommandText = "insert into " + table + " (VoyageID, ClientID, Etat, PrixTotal, CarteBancaire) values ('" + nouvelleLigne[0] + "', '" + nouvelleLigne[1] + "', 0, '" + nouvelleLigne[4] + "', '" + nouvelleLigne[4] + "');";
+                    commande.CommandText = "insert into " + table + " (VoyageID, ClientID, Etat, PrixTotal, CarteBancaire) values ('" + nouvelleLigne[0] + "', '" + nouvelleLigne[1] + "', 0, '" + nouvelleLigne[4] + "', '" + nouvelleLigne[5] + "');";
                     retour = "Le dossier correspond au client numéro " + nouvelleLigne[1] + " a été ajouté.";
                 }
                 else if (table == "Assurances")

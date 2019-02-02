@@ -16,7 +16,6 @@ namespace BoVoyages.Controlleur
         }
 
         //Méthode de vérification du login et du mot de passe
-
         public static bool Login(string login, string mdp)
         {
             bool loginOk = false;

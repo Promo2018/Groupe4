@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BoVoyages.Controller;
 using BoVoyages.Model;
+using System.Data;
 
 using System.IO;
 
@@ -95,7 +96,7 @@ namespace BoVoyages.View
                 System.Console.WriteLine("BoVoyages >>>>>>>>> - Supprimer un dossier");
                 Console.WriteLine("Entrez un ID de dossier :");
                 int id = SaisirEtVerifierID();
-                gestionDossier.Supprimer(id);
+                gestionDossier.SupprimerDossier(id);
             }
 
             else if (selection == 6)
@@ -203,5 +204,46 @@ namespace BoVoyages.View
             return raisonString;
         }
 
+        //Surcharger la méthode d'ajout de ligne pour ignorer certaines colonnes et en remplir automatiquement d'autres
+        public new static string[] SaisirNouvelleLigne(DataSet dataColumn)
+        {
+            List<string> listeSaisies = new List<string>();
+
+            if (dataColumn.Tables["Colonnes"].Rows.Count > 0)
+            {
+                foreach (DataRow ligne in dataColumn.Tables["Colonnes"].Rows)
+                {
+                    for (int i = 0; i < ligne.ItemArray.Length; i++)
+                    {
+                        //Ne rien ajouter pour l'ID (auto increment)
+                        if (ligne[i].ToString() == "ID")
+                        {
+                            listeSaisies.Add("");
+                        }
+                        //Ajouter une valeur nulle pour le prix total et la raison d'annulation
+                        else if (ligne[i].ToString() == "PrixTotal" || ligne[i].ToString() == "RaisonAnnulation")
+                        {
+                            listeSaisies.Add("");
+                        }
+                        //Fixer l'état à "en attente"
+                        else if (ligne[i].ToString() == "Etat")
+                        {
+                            listeSaisies.Add("0");
+                        }
+                        else
+                        {
+                            Console.Write(ligne[i] + " : ");
+                            listeSaisies.Add(Console.ReadLine());
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Erreur, pas de colonne trouvée dans la table.");
+            }
+            return listeSaisies.ToArray();
+        }
     }
 }

@@ -21,24 +21,23 @@ namespace BoVoyages
             
             MenuLogin menuLogin = new MenuLogin();
 
-            //Si le login fonctionne, générer le menu. Enlever le // de la ligne suivante pour tester sans login
-            ShowMenu(new MenuCommercial());
-            if (menuLogin.IsLoginOK()) 
+            //Si le login fonctionne, générer le menu.
+            if (menuLogin.VerifierLogin()) 
             {
-                ShowMenu(new MenuCommercial());
+                AfficherMenu(new MenuCommercial());
             }
             System.Console.WriteLine("BoVoyages : Au revoir.");
             System.Console.ReadKey();
         }
 
-        static void ShowMenu(Menu menu)
+        static void AfficherMenu(Menu menu)
         {
             menu.Afficher();
             selection = menu.Lire();
             menu = menu.Executer(selection);
             if(menu != null)
             {
-                ShowMenu(menu);
+                AfficherMenu(menu);
             }
         }
     }

@@ -1,0 +1,27 @@
+                //0 = Civilité, 1 = Nom, 2 = Prénom, 3 = Adresse, 4 = Code Postal, 5 = Ville, 6 = Date de naissance, 7 = Telephone, 8 = Email
+                string[] titreColonnes = { "Civilite", "Nom", "Prenom", "Adresse", "Code Postal", "Ville", "Date De Naissance", "Telephone", "Email" };
+                string[] nouveauClient = new string[8];
+                int n = 0;
+
+                foreach (string column in nouveauClient)
+                {
+                    Console.WriteLine(titreColonnes[n] + " :");
+                    nouveauClient[n] = Console.ReadLine();
+                    n++;
+                }
+                Console.WriteLine("Le ou la cliente " + nouveauClient[2] + " " + nouveauClient[3] + " a été ajouté(e)");
+
+
+-------------------------
+
+                string[] titreColonnes = { "DestinationID", "DateAller", "DateRetour", "Nombre de Places", "Prix" };
+                string[] nouveauVoyage = new string[5];
+                int n = 0;
+
+                foreach (string column in nouveauVoyage)
+                {
+                    Console.WriteLine(titreColonnes[n] + " :");
+                    nouveauVoyage[n] = Console.ReadLine();
+                    n++;
+                }
+                Console.WriteLine("Le voyage du " + nouveauVoyage[1] + " a été ajouté");

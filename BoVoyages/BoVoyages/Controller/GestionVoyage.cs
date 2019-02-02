@@ -56,7 +56,7 @@ namespace BoVoyages.Controller
         }
 
         // Supprimer une ligne de voyage
-        public void Supprimer(int id)
+        public void SupprimerVoyage(int id)
         {
             accesBDD.Supprimer(nomDeTable, id);
         }

@@ -84,6 +84,9 @@ End;*/
 --Alter Null or not null
 --ALTER TABLE Destination alter column Continent nvarchar(16) NOT NULL;
 --ALTER TABLE Dossier alter column CarteBancaire nvarchar(16) NOT NULL;
+--ALTER TABLE Voyages alter column Prix float NOT NULL;
+--ALTER TABLE Voyages alter column AgenceID int NOT NULL;
+--ALTER TABLE Clients alter column Statut nvarchar(32) NOT NULL;
 
 --Primary Keys
 --ALTER TABLE Voyage ADD CONSTRAINT PK_Voyage_VoyageID PRIMARY Key clustered(VoyageID);
@@ -104,12 +107,17 @@ EXEC sp_rename 'Dossier', 'Dossiers'
 EXEC sp_rename 'Voyage', 'Voyages'*/
 
 ------------------------
+--ALTER CHECK
+
+--ALTER TABLE Voyages ADD CHECK (NombreDePlaces<10);
+
+------------------------
 --SELECT
 
+select * from Clients;
 select * from Dossiers;
 select * from JointAssurDossier;
 select * from Assurances;
 select * from Voyages;
 select * from AgencesVoyages;
 select * from Destinations;
-select * from Clients;

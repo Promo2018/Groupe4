@@ -70,13 +70,13 @@ namespace BoVoyages.Controller
             return accesBDD.Modifier(table, "RaisonAnnulation", nouvelleValeur, id);
         }
 
-        public int CalculerPrixTousVoyages ()
+        public int CalculerPrixTousVoyages()
         {
             return accesBDD.ExecuterProcedure("CalculPrixVoyage");
                        
         }
 
-        public void Supprimer(int id)
+        public void SupprimerDossier(int id)
         {
             accesBDD.Supprimer("Dossiers", id);
         }
