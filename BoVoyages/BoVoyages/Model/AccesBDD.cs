@@ -198,6 +198,12 @@ namespace BoVoyages.Model
                     commande.CommandText = "insert into " + table + " (Nom, Cout, Type) values ('" + nouvelleLigne[0] + "', '" + nouvelleLigne[1] + "', '" + nouvelleLigne[2] + "');";
                     retour = "L'agence " + nouvelleLigne[0] + " a été ajoutée.";
                 }
+
+                else if (table == "AgencesVoyages")
+                {
+                    commande.CommandText = "insert into " + table + " (NomAgence) values ('" + nouvelleLigne[0] + "');";
+                    retour = "L'agence " + nouvelleLigne[0] + " a été ajoutée.";
+                }
                 this.commande.Connection = this.connexion;
                 commande.ExecuteNonQuery();
             }

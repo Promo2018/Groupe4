@@ -16,7 +16,6 @@ namespace BoVoyages.View
         bool succes;
 
         private int id;
-        public string[] titreColonnes = { "Statut", "Civilite", "Prenom", "Nom", "Region", "Prix", "PrixTotal", "Etat" }; // ("Voyage ID", "Etat", "Prix Total")
         
         public MenuAssurance(Menu previousMenu)
         {

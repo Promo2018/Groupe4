@@ -16,7 +16,6 @@ namespace BoVoyages.View
         bool succes;
 
         private int id;
-        public string[] titreColonnes = { "Statut", "Civilite", "Prenom", "Nom", "Region", "Prix", "PrixTotal", "Etat" }; // ("Voyage ID", "Etat", "Prix Total")
 
         public MenuAgence(Menu previousMenu)
         {
@@ -57,14 +56,16 @@ namespace BoVoyages.View
 
                 gestionAgence.ChercherAgence(id);
             }
-            /*
+
             else if (selection == 3)
             {
-                System.Console.WriteLine("BoVoyages >>>>>>>>> - Ajouter un assurance");
+                System.Console.WriteLine("BoVoyages >>>>>>>>> - Ajouter une agence");
 
-                gestionDossier.AjouterAssurance();
+                //Affiche les colonnes. Stocke les valeurs saisies. String[] intermédiaire pour la clarté du code 
+                string[] nouvelleAssurance = SaisirNouvelleLigne(accesBDD.RecupererNomsColonnes("AgencesVoyages"));
+
+                Console.WriteLine(gestionAgence.AjouterAgence(nouvelleAssurance));
             }
-            */
 
             else if (selection == 4)
             {

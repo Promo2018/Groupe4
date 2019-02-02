@@ -59,6 +59,10 @@ namespace BoVoyages.Controller
             return accesBDD.Modifier("AgencesVoyages", nomColonne, nouvelleValeur, id);
         }
 
+        public string AjouterAgence(params String[] nouvelleAgence)
+        {
+            return accesBDD.Ajouter(nouvelleAgence, nomDeTable);
+        }
 
 
     }
